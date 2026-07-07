@@ -1,0 +1,712 @@
+<title>Golden Vault — Table Cheat Sheets</title>
+<style>
+:root{
+  --bg:#191512; --card:#221c17; --card2:#2a231d; --line:#3a322a;
+  --ink:#e9e1d3; --ink-dim:#a89e8e; --ink-faint:#7a7264;
+  --gold:#c9a227;
+  --act:#d97b3f; --bon:#43a48d; --rea:#a184d9; --pas:#8a8378;
+  --act-bg:rgba(217,123,63,.14); --bon-bg:rgba(67,164,141,.14); --rea-bg:rgba(161,132,217,.16); --pas-bg:rgba(138,131,120,.14);
+  --good:#7dad5c; --warn:#d9a73f;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#f0eee9; --card:#ffffff; --card2:#f7f5f0; --line:#ddd8cf;
+    --ink:#26211c; --ink-dim:#6b6355; --ink-faint:#98907f;
+    --gold:#a07f14;
+    --act:#b35a22; --bon:#1e7f6a; --rea:#7757b8; --pas:#7c7466;
+    --act-bg:rgba(179,90,34,.10); --bon-bg:rgba(30,127,106,.10); --rea-bg:rgba(119,87,184,.11); --pas-bg:rgba(124,116,102,.12);
+    --good:#4e7d33; --warn:#a5761a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#191512; --card:#221c17; --card2:#2a231d; --line:#3a322a;
+  --ink:#e9e1d3; --ink-dim:#a89e8e; --ink-faint:#7a7264;
+  --gold:#c9a227;
+  --act:#d97b3f; --bon:#43a48d; --rea:#a184d9; --pas:#8a8378;
+  --act-bg:rgba(217,123,63,.14); --bon-bg:rgba(67,164,141,.14); --rea-bg:rgba(161,132,217,.16); --pas-bg:rgba(138,131,120,.14);
+  --good:#7dad5c; --warn:#d9a73f;
+}
+:root[data-theme="light"]{
+  --bg:#f0eee9; --card:#ffffff; --card2:#f7f5f0; --line:#ddd8cf;
+  --ink:#26211c; --ink-dim:#6b6355; --ink-faint:#98907f;
+  --gold:#a07f14;
+  --act:#b35a22; --bon:#1e7f6a; --rea:#7757b8; --pas:#7c7466;
+  --act-bg:rgba(179,90,34,.10); --bon-bg:rgba(30,127,106,.10); --rea-bg:rgba(119,87,184,.11); --pas-bg:rgba(124,116,102,.12);
+  --good:#4e7d33; --warn:#a5761a;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font:16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:28rem; margin:0 auto; padding:0 .8rem 4rem}
+h1,h2,h3,.charname{font-family:"Iowan Old Style", Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif}
+header.page{padding:1.1rem .2rem .4rem}
+header.page h1{margin:0; font-size:1.3rem; letter-spacing:.01em; text-wrap:balance}
+header.page p{margin:.2rem 0 0; color:var(--ink-dim); font-size:.82rem}
+/* character switcher */
+nav.tabs{
+  position:sticky; top:0; z-index:20; background:var(--bg);
+  display:flex; gap:.4rem; overflow-x:auto; padding:.6rem .1rem .55rem;
+  border-bottom:1px solid var(--line); scrollbar-width:none;
+}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{
+  flex:0 0 auto; border:1px solid var(--line); background:var(--card);
+  color:var(--ink-dim); border-radius:999px; padding:.42rem .85rem;
+  font:600 .85rem/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  cursor:pointer;
+}
+nav.tabs button[aria-selected="true"]{color:var(--ink); border-color:var(--gold); box-shadow:inset 0 -2px 0 var(--gold)}
+nav.tabs button:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+/* cards */
+section.char{display:none}
+section.char.active{display:block}
+.card{background:var(--card); border:1px solid var(--line); border-radius:8px; padding: .85rem .9rem; margin: .8rem 0}
+.charhead{padding:1rem .2rem .1rem}
+.charname{margin:0; font-size:1.55rem; line-height:1.15; text-wrap:balance}
+.charsub{margin:.15rem 0 0; color:var(--ink-dim); font-size:.86rem}
+/* stat strip */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:.45rem; margin:.75rem 0}
+.stat{background:var(--card); border:1px solid var(--line); border-radius:8px; text-align:center; padding:.45rem .2rem}
+.stat b{display:block; font-size:1.15rem; font-variant-numeric:tabular-nums}
+.stat span{font-size:.62rem; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-faint)}
+/* economy chips */
+.chip{display:inline-block; font-size:.64rem; font-weight:700; letter-spacing:.05em; border-radius:4px; padding:.1rem .4rem .12rem; vertical-align:1px; white-space:nowrap}
+.chip.a{color:var(--act); background:var(--act-bg)}
+.chip.b{color:var(--bon); background:var(--bon-bg)}
+.chip.r{color:var(--rea); background:var(--rea-bg)}
+.chip.p{color:var(--pas); background:var(--pas-bg)}
+.chip.c{color:var(--warn); background:transparent; border:1px solid var(--warn); font-weight:600}
+/* turn budget */
+.budget{display:flex; flex-direction:column; gap:.45rem}
+.budget .row{display:flex; gap:.6rem; align-items:baseline}
+.budget .tok{flex:0 0 5.2rem; text-align:right; font-weight:700; font-size:.78rem; letter-spacing:.04em}
+.budget .tok.a{color:var(--act)} .budget .tok.b{color:var(--bon)} .budget .tok.r{color:var(--rea)} .budget .tok.m{color:var(--gold)} .budget .tok.f{color:var(--pas)}
+.budget .desc{color:var(--ink-dim); font-size:.85rem}
+.budget .desc b{color:var(--ink); font-weight:600}
+/* ability / spell rows */
+.rows{display:flex; flex-direction:column; gap:.55rem; margin:.2rem 0 0}
+.row2{border-left:3px solid var(--line); padding:.05rem 0 .05rem .55rem}
+.row2.a{border-color:var(--act)} .row2.b{border-color:var(--bon)} .row2.r{border-color:var(--rea)} .row2.p{border-color:var(--pas)}
+.row2 .nm{font-weight:650; font-size:.92rem}
+.row2 .nm small{font-weight:400; color:var(--ink-faint)}
+.row2 .nm a{color:inherit; text-decoration:underline dotted; text-decoration-color:var(--ink-faint); text-underline-offset:3px}
+.row2 .nm a::after{content:"↗"; font-size:.6em; color:var(--ink-faint); margin-left:.2em; vertical-align:super}
+.row2 .nm a:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+.row2 .fx{color:var(--ink-dim); font-size:.84rem; margin-top:.05rem}
+.row2 .fx b{color:var(--ink); font-weight:600}
+h3.sec{font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin:1.15rem 0 .35rem}
+.slots{color:var(--ink-faint); font-size:.8rem; letter-spacing:.12em}
+/* details */
+details{border:1px solid var(--line); border-radius:8px; background:var(--card2); margin:.6rem 0}
+details summary{cursor:pointer; padding:.6rem .8rem; font-weight:600; font-size:.88rem; color:var(--ink-dim); list-style:none; display:flex; justify-content:space-between; align-items:center}
+details summary::after{content:"+"; color:var(--ink-faint); font-size:1rem}
+details[open] summary::after{content:"–"}
+details summary:focus-visible{outline:2px solid var(--gold); outline-offset:-2px}
+details .inner{padding:0 .8rem .75rem}
+/* misc */
+table{border-collapse:collapse; width:100%; font-size:.83rem}
+td,th{padding:.32rem .45rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top}
+th{font-size:.66rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); font-weight:600}
+td:first-child{white-space:nowrap; font-weight:600; font-variant-numeric:tabular-nums}
+.tablewrap{overflow-x:auto}
+.hint{background:var(--card2); border:1px dashed var(--line); border-radius:8px; padding:.7rem .8rem; font-size:.85rem; color:var(--ink-dim); margin:.8rem 0}
+.hint b{color:var(--ink)}
+.lost{border:1px solid var(--bon); border-radius:8px; padding:.8rem .9rem; margin:.8rem 0; background:var(--bon-bg)}
+.lost h3{margin:0 0 .4rem; font-size:.95rem}
+.lost ol{margin:.2rem 0 0; padding-left:1.15rem; font-size:.88rem}
+.lost li{margin:.35rem 0}
+.warnbox{font-size:.83rem; color:var(--warn); margin:.5rem 0 0}
+footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2.5rem}
+@media (prefers-reduced-motion: no-preference){
+  section.char.active{animation:fade .18s ease}
+  @keyframes fade{from{opacity:.4}to{opacity:1}}
+}
+</style>
+
+<div class="wrap">
+<header class="page">
+  <h1>Golden Vault — Table Cheat Sheets</h1>
+  <p>Level 5 · pick your character · <span class="chip a">ACTION</span> <span class="chip b">BONUS</span> <span class="chip r">REACTION</span> <span class="chip c">C</span>&hairsp;=&hairsp;Concentration (only one at a time!)</p>
+</header>
+
+<nav class="tabs" role="tablist" id="tabs"></nav>
+
+<!-- ══════════════════ SHARED TURN CARD (cloned into each char) ══════════════════ -->
+<template id="turn-template">
+  <div class="card">
+    <div class="budget">
+      <div class="row"><span class="tok m">MOVE</span><span class="desc"><b>__SPEED__ ft</b> — split it up around your action however you like</span></div>
+      <div class="row"><span class="tok a">ACTION</span><span class="desc">one per turn — attack, cast, Dash, Dodge, Help, Hide…</span></div>
+      <div class="row"><span class="tok b">BONUS</span><span class="desc">one per turn, <b>only</b> if an ability grants one (marked green below)</span></div>
+      <div class="row"><span class="tok f">FREE</span><span class="desc">interact with one object (draw weapon, open door, drop item)</span></div>
+      <div class="row"><span class="tok r">REACTION</span><span class="desc">one per <b>round</b>, usually on someone else's turn (marked violet)</span></div>
+    </div>
+  </div>
+  <details>
+    <summary>Standard actions everyone has</summary>
+    <div class="inner rows">
+      <div class="row2 a"><div class="nm">Dash</div><div class="fx">Extra movement equal to your speed.</div></div>
+      <div class="row2 a"><div class="nm">Disengage</div><div class="fx">Your movement doesn't provoke opportunity attacks this turn.</div></div>
+      <div class="row2 a"><div class="nm">Dodge</div><div class="fx">Attacks against you have disadvantage; DEX saves with advantage. Great panic button.</div></div>
+      <div class="row2 a"><div class="nm">Help</div><div class="fx">Give an ally advantage on their next check, or on their next attack vs an enemy within 5 ft of you.</div></div>
+      <div class="row2 a"><div class="nm">Hide</div><div class="fx">Stealth check (DC 15+) while out of sight → you're Invisible until found or you act.</div></div>
+      <div class="row2 a"><div class="nm">Ready</div><div class="fx">"When X happens, I do Y" — Y happens as a <span class="chip r">REACTION</span>.</div></div>
+      <div class="row2 a"><div class="nm">Grapple / Shove</div><div class="fx">Part of an Unarmed Strike: target saves STR or DEX vs 8+STR+prof, or is grabbed / pushed 5 ft / knocked prone.</div></div>
+      <div class="row2 r"><div class="nm">Opportunity Attack</div><div class="fx">Enemy leaves your reach → one melee attack against it.</div></div>
+    </div>
+  </details>
+</template>
+
+<!-- ══════════════════ BASICS ══════════════════ -->
+<section class="char" id="char-basics" data-name="Basics 📖">
+  <div class="charhead">
+    <h2 class="charname">How D&amp;D Works</h2>
+    <p class="charsub">The two-minute version — everything else you can ask at the table</p>
+  </div>
+
+  <div class="card">
+    <p style="margin:.1rem 0 .5rem; font-size:.9rem"><b>The golden rule:</b> you don't need to know rules. Say what your character <i>tries</i> — "I want to sneak past the guard", "I check the desk for hidden drawers", "I lie to his face" — and the DM tells you what to roll. The rules find <i>you</i>.</p>
+  </div>
+
+  <h3 class="sec">The three rolls (it's always a d20)</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Ability check</div><div class="fx">Can you do a <i>thing</i>? Roll d20 + skill (your sheet's numbers) vs a difficulty the DM sets. Climbing, lying, spotting, remembering.</div></div>
+    <div class="row2 p"><div class="nm">Attack roll</div><div class="fx">Do you <i>hit</i>? Roll d20 + attack bonus vs the target's Armor Class (AC). Hit → roll damage.</div></div>
+    <div class="row2 p"><div class="nm">Saving throw</div><div class="fx">Can you <i>resist</i>? Something bad targets you, you roll d20 + save vs the effect's DC. Dodge the fireball, resist the charm.</div></div>
+  </div>
+  <div class="hint"><b>Advantage / Disadvantage:</b> roll TWO d20s, take the better / worse one. That's the whole mechanic. A natural 20 on an attack is a <b>crit</b>: double the damage dice.</div>
+
+  <h3 class="sec">Two modes of play</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Free play <small>most of the session</small></div><div class="fx">Exploring, talking, scheming — no turns, no order. Just talk; jump in whenever. Time flows however the story needs.</div></div>
+    <div class="row2 p"><div class="nm">Combat <small>when swords come out</small></div><div class="fx">Time freezes into <b>rounds</b> (~6 seconds each). Everyone rolls <b>initiative</b> (d20 + your Init) once; you act in that order every round until the fight ends. On your turn: your budget below. Off your turn: you can still use a <span class="chip r">REACTION</span>.</div></div>
+  </div>
+
+  <h3 class="sec">Your turn — a budget, not a script</h3>
+  <div class="card">
+    <div class="budget">
+      <div class="row"><span class="tok m">MOVE</span><span class="desc">your speed in feet — split it freely: move, attack, keep moving</span></div>
+      <div class="row"><span class="tok a">ACTION</span><span class="desc">your ONE big thing: <b>Attack</b>, <b>cast a spell</b>, Dash (double move), Dodge (hard to hit), Help, Hide, Utilize an object</span></div>
+      <div class="row"><span class="tok b">BONUS</span><span class="desc">ONE small extra — but <b>only if an ability specifically grants one</b> (they're marked green on your sheet). No green ability, no bonus action.</span></div>
+      <div class="row"><span class="tok f">FREE</span><span class="desc">interact with one object on the way: draw a weapon, open a door, drop the torch</span></div>
+      <div class="row"><span class="tok r">REACTION</span><span class="desc">ONE per round, usually on OTHER people's turns — an enemy walks away from you (free swipe!), or an ability marked violet triggers</span></div>
+    </div>
+  </div>
+  <div class="hint"><b>Example turn:</b> move 15 ft to the goon (MOVE), attack him (ACTION), Healing Word the fallen friend (BONUS — a green ability), kick a chair into the doorway (FREE). Later, on the goon's turn, he runs past Theron — Theron uses his REACTION to hit him.</div>
+
+  <h3 class="sec">Spellcasting in 30 seconds</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Spell slots</div><div class="fx">Casting a leveled spell spends a <b>slot</b> of that level or higher (higher often = stronger). Slots refill on a long rest. <b>Cantrips are free, always.</b></div></div>
+    <div class="row2 p"><div class="nm">Concentration <span class="chip c">C</span></div><div class="fx">Some spells stay active only while you concentrate. <b>Only one at a time</b> — casting a second C-spell drops the first. Taking damage → CON save (DC 10 or half the damage) or it drops.</div></div>
+    <div class="row2 p"><div class="nm">Rituals [R]</div><div class="fx">Cast without a slot if you take 10 extra minutes. Great outside combat.</div></div>
+  </div>
+
+  <h3 class="sec">Getting hurt</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">0 HP</div><div class="fx">You fall <b>Unconscious</b> — not dead. On your turns you roll <b>death saves</b> (plain d20): 10+ is a success. Three successes = stable; three fails = dead. A nat 20 = wake up with 1 HP; a nat 1 = two fails.</div></div>
+    <div class="row2 p"><div class="nm">Healing</div><div class="fx">ANY healing (even 1 HP) wakes you up. This is why Gimli and Laurald scream "stay in range!"</div></div>
+    <div class="row2 p"><div class="nm">Resting</div><div class="fx"><b>Short rest</b> (1 h): spend Hit Dice to heal; some abilities recharge. <b>Long rest</b> (8 h): everything back — HP, slots, the works.</div></div>
+  </div>
+
+  <details>
+    <summary>Conditions you'll hear (what they actually mean)</summary>
+    <div class="inner tablewrap"><table>
+      <tr><td>Prone</td><td>On the ground. Melee attacks vs you have advantage, ranged disadvantage. Half your movement to stand up.</td></tr>
+      <tr><td>Grappled</td><td>Held — speed 0. Escape: action, Athletics or Acrobatics check.</td></tr>
+      <tr><td>Restrained</td><td>Tied/webbed: can't move, attacks vs you advantage, yours disadvantage, DEX saves disadvantage.</td></tr>
+      <tr><td>Frightened</td><td>Disadvantage on everything while you see the source; can't move closer to it.</td></tr>
+      <tr><td>Charmed</td><td>Can't attack the charmer; they have social advantage on you.</td></tr>
+      <tr><td>Blinded</td><td>Attacks vs you advantage, yours disadvantage, auto-fail sight checks.</td></tr>
+      <tr><td>Invisible</td><td>Reverse of blinded: you attack with advantage, enemies at disadvantage.</td></tr>
+      <tr><td>Incapacitated</td><td>No actions, no reactions. Paralyzed/Stunned/Unconscious include this and get worse from there (paralyzed: melee hits auto-crit!).</td></tr>
+      <tr><td>Difficult terrain</td><td>Rubble, steam pipes, lava crust: every foot costs two.</td></tr>
+    </table></div>
+  </details>
+
+  <div class="lost">
+    <h3>New-player survival tips</h3>
+    <ol>
+      <li>Plan your turn while others take theirs — combat stays snappy.</li>
+      <li>You can always just <b>Attack</b> or <b>Dodge</b>. Nobody optimizes at level 5.</li>
+      <li>Describe the <i>attempt</i>, not the rule. "I slide the flask off the desk into my sleeve" beats "can I roll Sleight of Hand?"</li>
+      <li>Rule of Cool is real: creative and dramatic beats optimal at this table.</li>
+      <li>Tap any <a href="https://5e.tools/spells.html#vicious%20mockery_xphb" target="_blank" rel="noopener" style="color:inherit">underlined name↗</a> on your character sheet for the full official text on 5e.tools.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════ GIMLI ══════════════════ -->
+<section class="char" id="char-gimli" data-name="Gimli 🎻" data-speed="25">
+  <div class="charhead">
+    <h2 class="charname">Gimli</h2>
+    <p class="charsub">Hill Dwarf · Bard 5 · College of Spirits · Charlatan · played by Kerstin</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>13</b><span>AC</span></div>
+    <div class="stat"><b>43</b><span>HP</span></div>
+    <div class="stat"><b>25 ft</b><span>Speed</span></div>
+    <div class="stat"><b>+2</b><span>Init</span></div>
+    <div class="stat"><b>14</b><span>Spell DC</span></div>
+    <div class="stat"><b>+6</b><span>Spell Atk</span></div>
+    <div class="stat"><b>d8 ×3</b><span>Bard. Insp.</span></div>
+    <div class="stat"><b>60 ft</b><span>Darkvision</span></div>
+  </div>
+  <div class="turn-slot"></div>
+
+  <div class="lost">
+    <h3>Totally lost? One of these is always fine:</h3>
+    <ol>
+      <li><span class="chip b">BONUS</span> Give <b>Bardic Inspiration</b> to a friend (roll the spirit die — see table!) → <span class="chip a">ACTION</span> <b>Vicious Mockery</b> an enemy.</li>
+      <li>Friend badly hurt? <span class="chip b">BONUS</span> <b>Healing Word</b> from safety (60 ft).</li>
+      <li>Scared? <span class="chip a">ACTION</span> <b>Dodge</b> and move behind Chumbo.</li>
+    </ol>
+    <p class="warnbox">⚠ Only ONE bonus action per turn — Healing Word and Bardic Inspiration don't fit in the same turn.</p>
+  </div>
+
+  <h3 class="sec">Your special thing: Spirits ✦</h3>
+  <div class="rows">
+    <div class="row2 b"><div class="nm">Bardic Inspiration <small>3 / short rest</small></div>
+      <div class="fx">Friend within 60 ft gets a <b>d8</b> they can add to a failed roll (within 1 h). <b>Every time you give one, a spirit answers:</b> roll your d8 on the table below — you now "hold" that spirit.</div></div>
+    <div class="row2 b"><div class="nm">Controlled Channeling</div>
+      <div class="fx">Instead: spend one Inspiration use to <b>choose</b> a spirit from the table (no roll, nobody gets a die).</div></div>
+    <div class="row2 a"><div class="nm">Unleash Spirit</div>
+      <div class="fx">Action: pick a creature within 30 ft (can be you) → the held spirit's effect happens. You hold max one spirit; it lasts until used or you rest.</div></div>
+    <div class="row2 p"><div class="nm">Spiritual Focus</div>
+      <div class="fx">Your playing cards are your spellcasting focus. Wave them dramatically.</div></div>
+  </div>
+  <details open>
+    <summary>Spirit table (d8) — save DC 14</summary>
+    <div class="inner tablewrap"><table>
+      <tr><th>d8</th><th>Spirit → what Unleash does to the target</th></tr>
+      <tr><td>1</td><td><b>Beloved</b> — heals d8 + 3</td></tr>
+      <tr><td>2</td><td><b>Sharpshooter</b> — d8 + 3 force damage</td></tr>
+      <tr><td>3</td><td><b>Avenger</b> — until your next turn, anyone who hits the target in melee takes d8 force</td></tr>
+      <tr><td>4</td><td><b>Renegade</b> — target may instantly teleport 30 ft (their reaction)</td></tr>
+      <tr><td>5</td><td><b>Fortune Teller</b> — target has advantage on ALL d20 rolls until your next turn</td></tr>
+      <tr><td>6</td><td><b>Wayfarer</b> — d8 + 5 temp HP and +10 ft speed while they last</td></tr>
+      <tr><td>7</td><td><b>Trickster</b> — WIS save or 2d8 psychic + Charmed until your next turn (half dmg on save)</td></tr>
+      <tr><td>8</td><td><b>Shade</b> — target turns Invisible until it acts; when it ends, everyone within 5 ft: CON save or 2d8 necrotic</td></tr>
+    </table></div>
+  </details>
+
+  <h3 class="sec">Spells <span class="slots">· slots 1st ○○○○ · 2nd ○○○ · 3rd ○○</span></h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Vicious Mockery <small>cantrip · 60 ft</small></div><div class="fx">Insult them! WIS save or <b>2d6 psychic</b> + disadvantage on their next attack.</div></div>
+    <div class="row2 a"><div class="nm">Minor Illusion <small>cantrip · 30 ft</small></div><div class="fx">Fake sound or small image for 1 min. Distract guards, fake a voice.</div></div>
+    <div class="row2 a"><div class="nm">Guidance <small>cantrip · 60 ft! <span class="chip c">C</span></small></div><div class="fx">Friend adds <b>+1d4</b> to one ability check. Use constantly when sneaking/talking.</div></div>
+    <div class="row2 a"><div class="nm">Cure Wounds <small>1st · touch</small></div><div class="fx">Heal <b>2d8+3</b>. Must touch them.</div></div>
+    <div class="row2 b"><div class="nm">Healing Word <small>1st · 60 ft</small></div><div class="fx">Heal <b>2d4+3</b> from range, as a bonus action. Best "get up!" button.</div></div>
+    <div class="row2 a"><div class="nm">Disguise Self <small>1st · self · 1 h</small></div><div class="fx">Look like someone else. Doesn't survive touching.</div></div>
+    <div class="row2 a"><div class="nm">Mirror Image <small>2nd · self · 1 min</small></div><div class="fx">3 duplicates of you; attacks likely hit a copy instead. No concentration — cast when cornered!</div></div>
+    <div class="row2 a"><div class="nm">Silence <small>2nd · 120 ft · <span class="chip c">C</span> 10 min</small></div><div class="fx">20-ft sphere of absolute quiet. No noise out — and <b>no spellcasting with words inside</b>. Heist gold.</div></div>
+    <div class="row2 a"><div class="nm">Knock <small>2nd · 60 ft</small></div><div class="fx">Opens a lock — with a LOUD knock heard 300 ft away. Emergency only.</div></div>
+    <div class="row2 a"><div class="nm">Detect Thoughts <small>2nd · self · <span class="chip c">C</span></small></div><div class="fx">Read surface thoughts within 30 ft. Perfect for a charlatan's "cold reading".</div></div>
+    <div class="row2 b"><div class="nm">Mass Healing Word <small>3rd · 60 ft</small></div><div class="fx">Up to <b>6 friends</b> heal <b>2d4+3</b> each. Bonus action. The "everyone up!" button.</div></div>
+    <div class="row2 a"><div class="nm">Spirit Guardians <small>3rd · self 15 ft · <span class="chip c">C</span> 10 min</small></div><div class="fx">Ghostly spirits swirl around you: enemies entering/starting in 15 ft — WIS save, <b>3d8 radiant</b> (half on save), speed halved. <small>(DM grant from your subclass)</small></div></div>
+  </div>
+  <div class="hint"><b>Free refill:</b> you can burn a spell slot (no action) to get back one use of Bardic Inspiration.</div>
+
+  <h3 class="sec">Weapons</h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Shortbow <small>+5 · 80/320 ft</small></div><div class="fx">1d6+2 piercing · Vex: on hit, advantage on your next attack vs that target.</div></div>
+    <div class="row2 a"><div class="nm">Dagger <small>+5 · thrown 20/60</small></div><div class="fx">1d4+2 piercing.</div></div>
+  </div>
+
+  <h3 class="sec">Magic items</h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Deck of Illusions</div><div class="fx">Draw a random card, throw it within 30 ft → an illusion of a creature appears (dragon? beholder? …you!) and stays until dispelled. It can't hurt anyone — but nobody knows that.</div></div>
+    <div class="row2 a"><div class="nm">Pipes of Haunting <small>3 charges</small></div><div class="fx">Eerie tune: creatures you choose within 30 ft — WIS save DC 15 or <b>Frightened</b> 1 min.</div></div>
+  </div>
+
+  <h3 class="sec">Always on</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Jack of All Trades</div><div class="fx">+1 on every skill check you're not proficient in (already in your numbers).</div></div>
+    <div class="row2 p"><div class="nm">Best skills</div><div class="fx"><b>Deception +9</b>, Sleight of Hand +8, Performance +6, Persuasion +4.</div></div>
+    <div class="row2 p"><div class="nm">Dwarf</div><div class="fx">Resistance to poison damage + advantage vs poison. Darkvision 60 ft.</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════ MAKO ══════════════════ -->
+<section class="char" id="char-mako" data-name="Mako 🔥" data-speed="30">
+  <div class="charhead">
+    <h2 class="charname">Mako</h2>
+    <p class="charsub">Tiefling · Warlock 5 · The Genie (Efreeti) · Urchin</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>12</b><span>AC</span></div>
+    <div class="stat"><b>38</b><span>HP</span></div>
+    <div class="stat"><b>30 ft</b><span>Speed</span></div>
+    <div class="stat"><b>+2</b><span>Init</span></div>
+    <div class="stat"><b>15</b><span>Spell DC</span></div>
+    <div class="stat"><b>+7</b><span>Spell Atk</span></div>
+    <div class="stat"><b>2× L3</b><span>Pact slots</span></div>
+    <div class="stat"><b>120 ft</b><span>Devil's Sight</span></div>
+  </div>
+  <div class="turn-slot"></div>
+  <div class="hint"><b>Default turn:</b> Eldritch Blast twice (+7, 1d10+4 each, can split targets). Slots come back on a <b>short rest</b> — don't hoard them. Stand in dim light: free Invisibility.</div>
+
+  <h3 class="sec">Signature moves</h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Eldritch Blast <small>cantrip · 120 ft</small></div><div class="fx"><b>2 beams</b>, +7 each, <b>1d10+4 force</b> each, any targets.</div></div>
+    <div class="row2 a"><div class="nm">One with Shadows <small>at will</small></div><div class="fx">In dim light or darkness: cast <b>Invisibility on yourself, no slot</b>. Ends if you attack/cast.</div></div>
+    <div class="row2 p"><div class="nm">Genie's Wrath</div><div class="fx">Once per turn when you hit: <b>+3 fire damage</b>.</div></div>
+    <div class="row2 p"><div class="nm">Devil's Sight</div><div class="fx">You see normally in ANY darkness, 120 ft — including your own Darkness spell.</div></div>
+    <div class="row2 a"><div class="nm">Bottled Respite <small>1 / long rest</small></div><div class="fx">Vanish into your vessel (up to 6 h). Hiding spot, smuggling trick, dramatic exit.</div></div>
+  </div>
+
+  <h3 class="sec">Spells <span class="slots">· 2 pact slots, all level 3, back on short rest</span></h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Fireball <small>3rd · 150 ft</small></div><div class="fx">20-ft sphere, DEX save 15, <b>8d6 fire</b> (half on save). Warn your friends.</div></div>
+    <div class="row2 a"><div class="nm">Hypnotic Pattern <small>3rd · 120 ft · <span class="chip c">C</span></small></div><div class="fx">30-ft cube: WIS 15 or <b>Charmed + Incapacitated</b>. Shuts down groups. Breaks on damage.</div></div>
+    <div class="row2 r"><div class="nm">Counterspell <small>3rd · 60 ft</small></div><div class="fx">Reaction when someone casts: CON save or their spell <b>fails</b>.</div></div>
+    <div class="row2 a"><div class="nm">Scorching Ray <small>2nd (upcast 3rd: 4 rays)</small></div><div class="fx">Rays +7, <b>2d6 fire</b> each.</div></div>
+    <div class="row2 b"><div class="nm">Misty Step <small>2nd</small></div><div class="fx">Teleport 30 ft. Bonus action.</div></div>
+    <div class="row2 b"><div class="nm">Hex <small>1st · <span class="chip c">C</span> 1 h</small></div><div class="fx">+1d6 necrotic on YOUR hits vs the target + it has disadvantage on one ability.</div></div>
+    <div class="row2 a"><div class="nm">Darkness <small>1 / long rest · free · <span class="chip c">C</span></small></div><div class="fx">15-ft sphere of magical darkness. Everyone's blind inside — <b>except you</b>.</div></div>
+    <div class="row2 r"><div class="nm">Hellish Rebuke <small>1 / long rest · free</small></div><div class="fx">Reaction when damaged: DEX 15, <b>3d10 fire</b> to the attacker.</div></div>
+  </div>
+  <details>
+    <summary>Utility &amp; rituals (no slot needed for [R])</summary>
+    <div class="inner rows">
+      <div class="row2 a"><div class="nm">Find Familiar [R]</div><div class="fx">Pact of the Chain familiar — scout with its eyes; it can attack via your Attack action (its reaction).</div></div>
+      <div class="row2 a"><div class="nm">Detect Magic [R] <span class="chip c">C</span></div><div class="fx">Sense magic within 30 ft for 10 min.</div></div>
+      <div class="row2 a"><div class="nm">Speak with Animals [R]</div><div class="fx">10 min of animal small talk.</div></div>
+      <div class="row2 a"><div class="nm">Cantrips</div><div class="fx">Create Bonfire (C, DEX 15, 2d8), Sorcerous Burst (+7, 2d8 acid), Minor Illusion, Thaumaturgy, Guidance (+1d4 checks, C), Mage Hand.</div></div>
+    </div>
+  </details>
+
+  <h3 class="sec">Magic items</h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Hat of Disguise</div><div class="fx">At-will Disguise Self. You are anyone.</div></div>
+    <div class="row2 a"><div class="nm">Immovable Rod</div><div class="fx">Press button: rod fixes in space, holds 8000 lb. Ladder anchor, door bar, trap jammer, gap bridge…</div></div>
+  </div>
+
+  <h3 class="sec">Always on</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Fire resistance</div><div class="fx">Half damage from fire.</div></div>
+    <div class="row2 p"><div class="nm">Skills</div><div class="fx">Deception +7, Intimidation +7, Stealth +5, Sleight of Hand +5.</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════ ARDEN ══════════════════ -->
+<section class="char" id="char-arden" data-name="Arden 🏹" data-speed="35">
+  <div class="charhead">
+    <h2 class="charname">Arden Wildbond</h2>
+    <p class="charsub">Satyr · Ranger 5 · Beast Master · Outlander</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>16</b><span>AC</span></div>
+    <div class="stat"><b>39</b><span>HP</span></div>
+    <div class="stat"><b>35 ft</b><span>Speed</span></div>
+    <div class="stat"><b>+4</b><span>Init</span></div>
+    <div class="stat"><b>13</b><span>Spell DC</span></div>
+    <div class="stat"><b>+7/+9</b><span>Melee/Bow</span></div>
+    <div class="stat"><b>2</b><span>Attacks</span></div>
+    <div class="stat"><b>+7</b><span>Stealth</span></div>
+  </div>
+  <div class="turn-slot"></div>
+  <div class="hint"><b>Default turn:</b> Bonus: Hunter's Mark (free 3/LR) → Attack twice with the bow (+9) → beast attacks too (replace one of your attacks, or command it as your bonus action next turns).</div>
+
+  <h3 class="sec">Your beast (Beast of the Land)</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Companion <small>AC 15 · HP 30 · Speed 40, climb 40</small></div><div class="fx">Acts right after your turn. Without a command it only Dodges. It adds +3 to all its checks and saves. If it dies: revive with a 1st-level slot (1 min) or new one after a long rest.</div></div>
+    <div class="row2 b"><div class="nm">Command Beast</div><div class="fx">Bonus action — OR replace <b>one of your two attacks</b> with its attack (better!).</div></div>
+    <div class="row2 a"><div class="nm">Beast's Strike <small>+5</small></div><div class="fx"><b>1d8+4</b> (pick B/P/S when summoned). If it charged 20 ft straight: <b>+1d6 and knocks prone</b>.</div></div>
+  </div>
+
+  <h3 class="sec">Attacks</h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Longbow <small>+9 · 150/600 ft</small></div><div class="fx"><b>1d8+4</b> piercing · Vex: hit → advantage on your next attack vs that target. Archery style already included.</div></div>
+    <div class="row2 a"><div class="nm">Shortsword <small>+7</small></div><div class="fx">1d6+4 · Vex.</div></div>
+    <div class="row2 a"><div class="nm">Ram <small>+4</small></div><div class="fx">1d4+1 bludgeoning. You have horns. Use responsibly.</div></div>
+  </div>
+
+  <h3 class="sec">Spells <span class="slots">· 1st ○○○○ · 2nd ○○</span></h3>
+  <div class="rows">
+    <div class="row2 b"><div class="nm">Hunter's Mark <small>free ×3/LR · <span class="chip c">C</span> 1 h</small></div><div class="fx">Mark a target: <b>+1d6 on every hit</b> against it. Re-mark for free when it dies.</div></div>
+    <div class="row2 a"><div class="nm">Cure Wounds <small>1st · touch</small></div><div class="fx">Heal 2d8+2.</div></div>
+    <div class="row2 a"><div class="nm">Entangle <small>1st · 90 ft · <span class="chip c">C</span></small></div><div class="fx">20-ft square of grasping plants: STR 13 or <b>Restrained</b>.</div></div>
+    <div class="row2 b"><div class="nm">Magic Weapon <small>2nd · touch</small></div><div class="fx">A weapon becomes +1 for 1 h. No concentration in 2024!</div></div>
+    <div class="row2 a"><div class="nm">Animal Friendship / Beast Bond / Locate Animals [R]</div><div class="fx">Beast utility kit.</div></div>
+  </div>
+
+  <h3 class="sec">Magic items</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Boots of Striding and Springing</div><div class="fx">Once per turn: <b>jump 30 ft for only 10 ft of movement</b> — plus your Mirthful Leaps d8. You are a rubber ball.</div></div>
+    <div class="row2 p"><div class="nm">Quiver of Ehlonna</div><div class="fx">Bottomless: 60 arrows + 18 javelins + 6 long things (bows, staffs — the party's weapons past a pat-down).</div></div>
+  </div>
+
+  <h3 class="sec">Always on</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Magic Resistance</div><div class="fx"><b>Advantage on saves vs all spells</b> and magical effects. You shrug off wizards.</div></div>
+    <div class="row2 p"><div class="nm">Mirthful Leaps</div><div class="fx">+1d8 ft on any jump.</div></div>
+    <div class="row2 p"><div class="nm">Skills</div><div class="fx">Stealth +7, Athletics +7 (expertise), Survival +5, Medicine +5, Animal Handling +5.</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════ CHUMBO ══════════════════ -->
+<section class="char" id="char-chumbo" data-name="Chumbo 🪓" data-speed="40">
+  <div class="charhead">
+    <h2 class="charname">Chumbo</h2>
+    <p class="charsub">Goliath · Barbarian 5 · Gladiator · (subclass: deciding — Wild Magic or Zealot)</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>15</b><span>AC</span></div>
+    <div class="stat"><b>55</b><span>HP</span></div>
+    <div class="stat"><b>40 ft</b><span>Speed</span></div>
+    <div class="stat"><b>+2</b><span>Init</span></div>
+    <div class="stat"><b>+7</b><span>Attack</span></div>
+    <div class="stat"><b>2</b><span>Attacks</span></div>
+    <div class="stat"><b>3/LR</b><span>Rages</span></div>
+    <div class="stat"><b>12</b><span>Pass. Perc.</span></div>
+  </div>
+  <div class="turn-slot"></div>
+  <div class="hint"><b>Default turn:</b> Bonus: RAGE → attack twice, Reckless if you want to hit hard. Keep Stone's Endurance ready for the first big hit you take.</div>
+
+  <h3 class="sec">Rage &amp; toughness</h3>
+  <div class="rows">
+    <div class="row2 b"><div class="nm">Rage <small>3 / long rest · 1 gets back on short rest</small></div><div class="fx"><b>+2 damage</b> on STR attacks · <b>half damage</b> from slashing/piercing/bludgeoning · advantage on STR checks &amp; saves. Stays up if you attack or take damage each round (max 10 min). No heavy armor.</div></div>
+    <div class="row2 p"><div class="nm">Reckless Attack</div><div class="fx">Declare on your first attack: <b>advantage on all your STR attacks</b> this turn — but attacks against you also have advantage until your next turn.</div></div>
+    <div class="row2 r"><div class="nm">Stone's Endurance <small>1 / short rest</small></div><div class="fx">Reaction when damaged: <b>reduce it by 1d12+3</b>.</div></div>
+    <div class="row2 p"><div class="nm">Danger Sense</div><div class="fx">Advantage on DEX saves (unless Incapacitated). Fireballs fear you.</div></div>
+    <div class="row2 p"><div class="nm">Primal Knowledge</div><div class="fx">While raging: Acrobatics, Intimidation, Perception, Stealth, Survival checks can use <b>STR (+7)</b>. Yes — angry sneaking.</div></div>
+  </div>
+
+  <h3 class="sec">Attacks <span class="slots">· 2 per Attack action · +2 dmg while raging</span></h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Greataxe <small>+7</small></div><div class="fx"><b>1d12+4</b> slashing · <b>Cleave:</b> once/turn on a hit, free extra swing at a second enemy within 5 ft (1d12, no +4).</div></div>
+    <div class="row2 a"><div class="nm">Glaive <small>+7 · reach 10 ft</small></div><div class="fx"><b>1d10+4</b> slashing · <b>Graze:</b> even on a miss, deal 4 damage.</div></div>
+    <div class="row2 a"><div class="nm">Javelin <small>+7 · thrown 30/120</small></div><div class="fx">1d6+4 · <b>Slow:</b> hit reduces target speed by 10 ft.</div></div>
+    <div class="row2 a"><div class="nm">Javelin of Lightning <small>1 / dawn</small></div><div class="fx">Instead of an attack roll: <b>5-ft-wide lightning line</b> to a point within 120 ft — everyone in it: DEX 13, <b>4d6 lightning</b> (half on save). It flies back to your hand. <b>Friends in the line get zapped too.</b></div></div>
+  </div>
+
+  <h3 class="sec">Magic items</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Dread Helm</div><div class="fx">Your eyes glow red, your face is shadow. Purely cosmetic. Purely awesome. Intimidation theater.</div></div>
+  </div>
+
+  <h3 class="sec">Always on</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Goliath</div><div class="fx">Cold resistance · count as Large for carrying/pushing · no altitude penalties.</div></div>
+    <div class="row2 p"><div class="nm">Watch out</div><div class="fx">WIS 8 — if something seems too good to be true, ask Laurald first.</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════ THERON ══════════════════ -->
+<section class="char" id="char-theron" data-name="Theron ⚔️" data-speed="30">
+  <div class="charhead">
+    <h2 class="charname">Theron Firescale</h2>
+    <p class="charsub">Chromatic Dragonborn (red) · Paladin 5 · Oath of Glory · Lord Commander</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>16</b><span>AC</span></div>
+    <div class="stat"><b>39</b><span>HP</span></div>
+    <div class="stat"><b>30 ft</b><span>Speed</span></div>
+    <div class="stat"><b>+1</b><span>Init</span></div>
+    <div class="stat"><b>14</b><span>Spell DC</span></div>
+    <div class="stat"><b>+6</b><span>Attack</span></div>
+    <div class="stat"><b>25</b><span>Lay on Hands</span></div>
+    <div class="stat"><b>2/LR</b><span>Channel Div.</span></div>
+  </div>
+  <div class="turn-slot"></div>
+  <div class="hint"><b>Default turn:</b> Attack: hammer + axe (Nick gives you a 3rd swing, once/turn) → on a solid hit, Bonus: Divine Smite. <b>You have MANY bonus actions — pick ONE per turn:</b> Smite, Lay on Hands, Shield of Faith, Peerless Athlete, cloak billow…</div>
+
+  <h3 class="sec">Attacks <span class="slots">· 2 per Attack action (+1 via Nick)</span></h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Light Hammer <small>+6 · thrown 20/60</small></div><div class="fx"><b>1d4+3</b> · <b>Nick:</b> your off-hand swing folds into the Attack action (no bonus action needed), once/turn. TWF feat: +3 damage applies.</div></div>
+    <div class="row2 a"><div class="nm">Handaxe <small>+6 · thrown 20/60</small></div><div class="fx"><b>1d6+3</b> · <b>Vex:</b> hit → advantage on your next attack vs that target.</div></div>
+    <div class="row2 a"><div class="nm">Longsword <small>+6</small></div><div class="fx">1d8+3 (1d10 two-handed) · Sap: hit → target has disadvantage on its next attack.</div></div>
+    <div class="row2 a"><div class="nm">Fire Breath <small>3 / long rest</small></div><div class="fx">Replace one attack: <b>30-ft line</b>, DEX 12, <b>2d10 fire</b> (half on save).</div></div>
+  </div>
+
+  <h3 class="sec">Paladin kit</h3>
+  <div class="rows">
+    <div class="row2 b"><div class="nm">Divine Smite <small>1st free 1/LR, then slots</small></div><div class="fx">Bonus action after a melee hit: <b>+2d8 radiant</b> (+1d8 per slot level above 1st; +1d8 vs undead/fiends).</div></div>
+    <div class="row2 b"><div class="nm">Lay on Hands <small>pool: 25 HP / long rest</small></div><div class="fx">Bonus action, touch: heal any amount from the pool, or spend 5 to cure Poisoned.</div></div>
+    <div class="row2 b"><div class="nm">Channel Divinity: Inspiring Smite <small>2/LR shared</small></div><div class="fx">Right after your Divine Smite: distribute <b>2d8+5 temp HP</b> among creatures within 30 ft.</div></div>
+    <div class="row2 b"><div class="nm">Channel Divinity: Peerless Athlete</div><div class="fx">1 h: advantage on Athletics &amp; Acrobatics, jumps +10 ft.</div></div>
+    <div class="row2 a"><div class="nm">Chromatic Warding <small>1 / long rest</small></div><div class="fx">Become <b>immune to fire</b> for 1 minute. (You already resist it always.)</div></div>
+    <div class="row2 r"><div class="nm">Sentinel feat</div><div class="fx">Enemy within 5 ft attacks someone else → reaction: whack it. Your opportunity attacks drop enemy speed to 0. Nobody walks past the Lord Commander.</div></div>
+  </div>
+
+  <h3 class="sec">Spells <span class="slots">· 1st ○○○○ · 2nd ○○ · oath spells always ready</span></h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Guiding Bolt <small>1st · oath · 120 ft</small></div><div class="fx">+6 vs AC: <b>4d6 radiant</b> + next attack on target has advantage.</div></div>
+    <div class="row2 a"><div class="nm">Command <small>1st · 60 ft</small></div><div class="fx">WIS 14 or they obey one word: Drop! Flee! Grovel! (prone).</div></div>
+    <div class="row2 b"><div class="nm">Shield of Faith <small>1st · <span class="chip c">C</span></small></div><div class="fx">+2 AC on someone for 10 min.</div></div>
+    <div class="row2 b"><div class="nm">Searing / Shining Smite <small>1st/2nd · <span class="chip c">C</span></small></div><div class="fx">Extra rider damage/glow on your next/current hits.</div></div>
+    <div class="row2 a"><div class="nm">Heroism <small>1st · oath · <span class="chip c">C</span></small></div><div class="fx">Ally is immune to Frightened + temp HP each turn.</div></div>
+    <div class="row2 a"><div class="nm">Find Steed <small>2nd · free 1/LR</small></div><div class="fx">Summon your loyal steed. Yes, even indoors. Especially indoors.</div></div>
+    <div class="row2 a"><div class="nm">Enhance Ability / Magic Weapon <small>2nd · oath</small></div><div class="fx">Advantage on one ability's checks (C) / weapon +1 (bonus action).</div></div>
+  </div>
+
+  <h3 class="sec">Magic items</h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Cloak of the Mountebank <small>1 / dawn</small></div><div class="fx"><b>Dimension Door</b>: teleport 500 ft, can bring one willing ally — vanish in brimstone smoke. <span class="chip b">BONUS</span> Billow dramatically (always).</div></div>
+    <div class="row2 a"><div class="nm">Horn of Silent Alarm <small>4 charges</small></div><div class="fx">Blow it — <b>only one chosen creature within 600 ft hears it</b>. Silent go-signal.</div></div>
+    <div class="row2 p"><div class="nm">Armor of Gleaming</div><div class="fx">Your chain mail never gets dirty. Sewer level? Parade shine.</div></div>
+  </div>
+
+  <h3 class="sec">Always on</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Fire resistance</div><div class="fx">Half fire damage, always.</div></div>
+    <div class="row2 p"><div class="nm">Face of the party</div><div class="fx">Persuasion +6, Intimidation +6 — but Stealth +1 in clanking chain mail. You are the distraction, not the sneak.</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════ LAURALD ══════════════════ -->
+<section class="char" id="char-laurald" data-name="Laurald 🌿" data-speed="30">
+  <div class="charhead">
+    <h2 class="charname">Laurald 2</h2>
+    <p class="charsub">Dragonborn (black) · Druid 5 · Circle of the Land (Arid) · Criminal · played by Laura</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>13</b><span>AC</span></div>
+    <div class="stat"><b>33</b><span>HP</span></div>
+    <div class="stat"><b>30 ft</b><span>Speed</span></div>
+    <div class="stat"><b>+5</b><span>Init</span></div>
+    <div class="stat"><b>14</b><span>Spell DC</span></div>
+    <div class="stat"><b>+6</b><span>Spell Atk</span></div>
+    <div class="stat"><b>2/LR</b><span>Wild Shape</span></div>
+    <div class="stat"><b>641</b><span>gp 💰</span></div>
+  </div>
+  <div class="turn-slot"></div>
+  <div class="hint"><b>Default turn:</b> hold Concentration on Moonbeam or Faerie Fire, cantrip (+6, 2d10 Fire Bolt) with your action, Healing Word as bonus when someone drops. Keep one 3rd-level slot for <b>Revivify</b> (needs a 300 gp diamond — buy one!).</div>
+
+  <h3 class="sec">Druid kit</h3>
+  <div class="rows">
+    <div class="row2 b"><div class="nm">Wild Shape <small>2 / long rest</small></div><div class="fx">Become a known beast (CR ≤ ½, no fly) for hours; gain <b>5 temp HP</b>; keep INT/WIS/CHA and skills. Spider under the door, cat on patrol…</div></div>
+    <div class="row2 a"><div class="nm">Land's Aid <small>spend a Wild Shape use</small></div><div class="fx">10-ft sphere within 60 ft: chosen creatures CON 14 or <b>2d6 necrotic</b>, AND one creature in it <b>heals 2d6</b>.</div></div>
+    <div class="row2 a"><div class="nm">Acid Breath <small>1 / short rest</small></div><div class="fx">5×30 ft line: DEX 12, <b>2d6 acid</b> (half on save).</div></div>
+    <div class="row2 p"><div class="nm">Circle of the Land (Arid)</div><div class="fx">Always prepared for free: <b>Fire Bolt, Burning Hands, Blur, Fireball</b>. You can switch land type (polar/temperate/tropical) each long rest.</div></div>
+  </div>
+
+  <h3 class="sec">Recommended prepared (9) <span class="slots">· 1st ○○○○ · 2nd ○○○ · 3rd ○○</span></h3>
+  <div class="rows">
+    <div class="row2 b"><div class="nm">Healing Word <small>1st · 60 ft</small></div><div class="fx">Heal <b>2d4+3</b> at range, bonus action. Your "get up!" button.</div></div>
+    <div class="row2 a"><div class="nm">Cure Wounds <small>1st · touch</small></div><div class="fx">Heal 2d8+3.</div></div>
+    <div class="row2 a"><div class="nm">Faerie Fire <small>1st · <span class="chip c">C</span></small></div><div class="fx">20-ft cube: DEX save or outlined — <b>everyone attacks them with advantage</b>, no hiding/invisibility.</div></div>
+    <div class="row2 r"><div class="nm">Absorb Elements <small>1st</small></div><div class="fx">Reaction vs elemental damage: <b>halve it</b>, next melee hit +1d6.</div></div>
+    <div class="row2 a"><div class="nm">Pass without Trace <small>2nd · <span class="chip c">C</span> 1 h</small></div><div class="fx"><b>+10 Stealth for the whole group.</b> The heist spell. Cast it early, guard it.</div></div>
+    <div class="row2 a"><div class="nm">Moonbeam <small>2nd · <span class="chip c">C</span></small></div><div class="fx">5-ft radius beam, <b>2d10 radiant</b>/turn, CON save; on later turns a Magic action moves it 60 ft.</div></div>
+    <div class="row2 a"><div class="nm">Hold Person <small>2nd · <span class="chip c">C</span></small></div><div class="fx">WIS 14 or <b>Paralyzed</b> (humanoids only — not constructs!). Melee hits auto-crit.</div></div>
+    <div class="row2 a"><div class="nm">Call Lightning <small>3rd · <span class="chip c">C</span> 10 min</small></div><div class="fx">Storm cloud (needs high ceiling/sky): <b>3d10 lightning</b> bolt every turn as a Magic action, DEX save.</div></div>
+    <div class="row2 a"><div class="nm">Revivify <small>3rd · needs 300 gp diamond</small></div><div class="fx">Touch someone dead &lt; 1 min: <b>they come back</b> at 1 HP. The most important spell on this list.</div></div>
+  </div>
+  <details>
+    <summary>Cantrips + full spell list (re-pick 9 each long rest)</summary>
+    <div class="inner rows">
+      <div class="row2 a"><div class="nm">Cantrips</div><div class="fx"><b>Fire Bolt</b> (+6, 2d10 — circle gift), Produce Flame (+6, 2d8), Starry Wisp (+6, 2d8 radiant), Message (whisper 120 ft), Mending, Guidance-style utility.</div></div>
+      <div class="row2 p"><div class="nm">1st</div><div class="fx">Thunderwave, Ice Knife, Charm Person, Detect Magic [R], Entangle, Fog Cloud (C), Goodberry, Jump, Longstrider, Speak with Animals [R], Animal Friendship, Create/Destroy Water, Protection from Evil &amp; Good, Purify Food &amp; Drink [R], Beast Bond, Earth Tremor, Detect Poison [R], <b>Burning Hands</b> (circle, 3d6 cone).</div></div>
+      <div class="row2 p"><div class="nm">2nd</div><div class="fx">Heat Metal (2d8/turn, they drop weapons — great vs armored foes &amp; CLOCKWORKS), Spike Growth (C), Barkskin, Lesser Restoration, Enhance Ability (C), Enlarge/Reduce (C), Flaming Sphere (C), Gust of Wind (C), Darkvision, Locate Object (C), Aid, Augury [R], Animal Messenger [R], Find Traps, Flame Blade (C), Continual Flame, Earthbind (C), Dust Devil (C), Warding Wind (C), Skywrite [R], Protection from Poison, <b>Blur</b> (circle, C).</div></div>
+      <div class="row2 p"><div class="nm">3rd</div><div class="fx"><b>Fireball</b> (circle, 8d6!), Dispel Magic, Sleet Storm (C), Plant Growth, Meld into Stone [R], Water Breathing [R], Water Walk [R], Wind Wall, Daylight, Protection from Energy (C), Speak with Plants, Conjure Animals (C), Erupting Earth, Tidal Wave, Wall of Water (C), Flame Arrows (C), Freedom of the Waves, Call Lightning (C).</div></div>
+    </div>
+  </details>
+
+  <h3 class="sec">Magic items</h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Alchemy Jug <small>1 liquid type / day</small></div><div class="fx">Name a liquid, pour up to: <b>acid 8 oz</b> · poison 4 oz · oil 1 qt · beer 4 gal · wine 1 gal · honey · vinegar · fresh/salt water · <b>mayonnaise 2 gal</b>.</div></div>
+    <div class="row2 p"><div class="nm">Periapt of Wound Closure</div><div class="fx">Death saves of 9 or lower become 10 (you basically don't fail) · hit dice heal double.</div></div>
+    <div class="row2 a"><div class="nm">Bag of Beans <small>ask the DM first 🙃</small></div><div class="fx">Plant a bean → something random and possibly catastrophic grows.</div></div>
+    <div class="row2 a"><div class="nm">Potion of Healing</div><div class="fx">Bonus action to drink (2024): 2d4+2.</div></div>
+  </div>
+
+  <h3 class="sec">Always on</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Acid resistance</div><div class="fx">Half acid damage.</div></div>
+    <div class="row2 p"><div class="nm">Skills</div><div class="fx">Nature +8, Arcana +5, Stealth +5, Sleight of Hand +5, Medicine +6 · Thieves' Tools &amp; Herbalism Kit. You're the brains AND a lockpick.</div></div>
+  </div>
+</section>
+
+<footer>Golden Vault · Tockworth's Clockworks oneshot · numbers from the 5etools dataset (2024 rules) — tell the DM if something looks off</footer>
+</div>
+
+<script>
+(function(){
+  // 5e.tools deep links — sources resolved from the dataset, not guessed
+  const S = "https://5e.tools/spells.html#", I = "https://5e.tools/items.html#", B = "https://5e.tools/bestiary.html#";
+  const LINKS = {
+    "Vicious Mockery": S+"vicious%20mockery_xphb", "Minor Illusion": S+"minor%20illusion_xphb",
+    "Guidance": S+"guidance_xphb", "Cure Wounds": S+"cure%20wounds_xphb",
+    "Healing Word": S+"healing%20word_xphb", "Disguise Self": S+"disguise%20self_xphb",
+    "Mirror Image": S+"mirror%20image_xphb", "Silence": S+"silence_xphb",
+    "Knock": S+"knock_xphb", "Detect Thoughts": S+"detect%20thoughts_xphb",
+    "Mass Healing Word": S+"mass%20healing%20word_xphb", "Spirit Guardians": S+"spirit%20guardians_xphb",
+    "Eldritch Blast": S+"eldritch%20blast_xphb", "Fireball": S+"fireball_xphb",
+    "Hypnotic Pattern": S+"hypnotic%20pattern_xphb", "Counterspell": S+"counterspell_xphb",
+    "Scorching Ray": S+"scorching%20ray_xphb", "Misty Step": S+"misty%20step_xphb",
+    "Hex": S+"hex_xphb", "Darkness": S+"darkness_xphb", "Hellish Rebuke": S+"hellish%20rebuke_xphb",
+    "Find Familiar [R]": S+"find%20familiar_xphb", "Detect Magic [R]": S+"detect%20magic_xphb",
+    "Speak with Animals [R]": S+"speak%20with%20animals_xphb",
+    "Hunter's Mark": S+"hunter's%20mark_xphb", "Entangle": S+"entangle_xphb",
+    "Magic Weapon": S+"magic%20weapon_xphb",
+    "Animal Friendship / Beast Bond / Locate Animals [R]": S+"animal%20friendship_xphb",
+    "Guiding Bolt": S+"guiding%20bolt_xphb", "Command": S+"command_xphb",
+    "Shield of Faith": S+"shield%20of%20faith_xphb",
+    "Searing / Shining Smite": S+"searing%20smite_xphb", "Heroism": S+"heroism_xphb",
+    "Find Steed": S+"find%20steed_xphb", "Enhance Ability / Magic Weapon": S+"enhance%20ability_xphb",
+    "Divine Smite": S+"divine%20smite_xphb", "Faerie Fire": S+"faerie%20fire_xphb",
+    "Absorb Elements": S+"absorb%20elements_xge", "Pass without Trace": S+"pass%20without%20trace_xphb",
+    "Moonbeam": S+"moonbeam_xphb", "Hold Person": S+"hold%20person_xphb",
+    "Call Lightning": S+"call%20lightning_xphb", "Revivify": S+"revivify_xphb",
+    "Deck of Illusions": I+"deck%20of%20illusions_xdmg", "Pipes of Haunting": I+"pipes%20of%20haunting_xdmg",
+    "Hat of Disguise": I+"hat%20of%20disguise_xdmg", "Immovable Rod": I+"immovable%20rod_xdmg",
+    "Boots of Striding and Springing": I+"boots%20of%20striding%20and%20springing_xdmg",
+    "Quiver of Ehlonna": I+"quiver%20of%20ehlonna_xdmg", "Javelin of Lightning": I+"javelin%20of%20lightning_xdmg",
+    "Dread Helm": I+"dread%20helm_xdmg", "Horn of Silent Alarm": I+"horn%20of%20silent%20alarm_xdmg",
+    "Armor of Gleaming": I+"armor%20of%20gleaming_xdmg", "Alchemy Jug": I+"alchemy%20jug_xdmg",
+    "Periapt of Wound Closure": I+"periapt%20of%20wound%20closure_xdmg",
+    "Bag of Beans": I+"bag%20of%20beans_xdmg", "Potion of Healing": I+"potion%20of%20healing_xdmg",
+    "Cloak of the Mountebank": I+"cape%20of%20the%20mountebank_xdmg",
+    "Companion": B+"beast%20of%20the%20land_xphb"
+  };
+  document.querySelectorAll('.row2 .nm').forEach(nm => {
+    const txt = nm.firstChild;
+    if (!txt || txt.nodeType !== 3) return;
+    const key = txt.textContent.trim();
+    const url = LINKS[key];
+    if (!url) return;
+    const a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    a.textContent = key;
+    nm.replaceChild(a, txt);
+    nm.insertBefore(document.createTextNode(' '), a.nextSibling);
+  });
+
+  const chars = Array.from(document.querySelectorAll('section.char'));
+  const tabs = document.getElementById('tabs');
+  const tmpl = document.getElementById('turn-template');
+  chars.forEach(ch => {
+    // inject shared turn card with per-char speed
+    const slot = ch.querySelector('.turn-slot');
+    if (slot){
+      const frag = tmpl.content.cloneNode(true);
+      slot.replaceWith(frag);
+      const card = ch.querySelector('.budget .desc b');
+      if (card) card.textContent = card.textContent.replace('__SPEED__', ch.dataset.speed);
+    }
+    // build tab
+    const b = document.createElement('button');
+    b.textContent = ch.dataset.name;
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-selected','false');
+    b.addEventListener('click', () => select(ch.id));
+    b.dataset.for = ch.id;
+    tabs.appendChild(b);
+  });
+  function select(id){
+    chars.forEach(c => c.classList.toggle('active', c.id === id));
+    tabs.querySelectorAll('button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.for === id)));
+    try{ localStorage.setItem('gv-char', id); }catch(e){}
+    const btn = tabs.querySelector('button[aria-selected="true"]');
+    if (btn) btn.scrollIntoView({inline:'center', block:'nearest'});
+  }
+  let start = null;
+  try{ start = localStorage.getItem('gv-char'); }catch(e){}
+  if (!start || !document.getElementById(start)) start = 'char-basics';
+  select(start);
+})();
+</script>

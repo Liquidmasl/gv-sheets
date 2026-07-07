@@ -459,7 +459,7 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
 <section class="char" id="char-chumbo" data-name="Chumbo 🪓" data-speed="40">
   <div class="charhead">
     <h2 class="charname">Chumbo</h2>
-    <p class="charsub">Goliath · Barbarian 5 · Gladiator · (subclass: deciding — Wild Magic or Zealot)</p>
+    <p class="charsub">Goliath · Barbarian 5 · Path of Wild Magic · Gladiator</p>
   </div>
   <div class="stats">
     <div class="stat"><b>15</b><span>AC</span></div>
@@ -476,12 +476,27 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
 
   <h3 class="sec">Rage &amp; toughness</h3>
   <div class="rows">
-    <div class="row2 b"><div class="nm">Rage <small>3 / long rest · 1 gets back on short rest</small></div><div class="fx"><b>+2 damage</b> on STR attacks · <b>half damage</b> from slashing/piercing/bludgeoning · advantage on STR checks &amp; saves. Stays up if you attack or take damage each round (max 10 min). No heavy armor.</div></div>
+    <div class="row2 b"><div class="nm">Rage <small>3 / long rest · 1 gets back on short rest</small></div><div class="fx"><b>+2 damage</b> on STR attacks · <b>half damage</b> from slashing/piercing/bludgeoning · advantage on STR checks &amp; saves. Stays up if you attack or take damage each round (max 10 min). No heavy armor. <b>Entering rage = roll on your Wild Magic table below!</b></div></div>
     <div class="row2 p"><div class="nm">Reckless Attack</div><div class="fx">Declare on your first attack: <b>advantage on all your STR attacks</b> this turn — but attacks against you also have advantage until your next turn.</div></div>
     <div class="row2 r"><div class="nm">Stone's Endurance <small>1 / short rest</small></div><div class="fx">Reaction when damaged: <b>reduce it by 1d12+3</b>.</div></div>
     <div class="row2 p"><div class="nm">Danger Sense</div><div class="fx">Advantage on DEX saves (unless Incapacitated). Fireballs fear you.</div></div>
     <div class="row2 p"><div class="nm">Primal Knowledge</div><div class="fx">While raging: Acrobatics, Intimidation, Perception, Stealth, Survival checks can use <b>STR (+7)</b>. Yes — angry sneaking.</div></div>
+    <div class="row2 a"><div class="nm">Magic Awareness <small>3 / long rest</small></div><div class="fx">Action: sense every spell and magic item within 60 ft (and its school) until your next turn ends. The wild magic in you sniffs out other magic.</div></div>
   </div>
+  <details open>
+    <summary>Wild Magic surge (d8, roll when you Rage) — save DC 14</summary>
+    <div class="inner tablewrap"><table>
+      <tr><th>d8</th><th>What erupts from you</th></tr>
+      <tr><td>1</td><td><b>Shadow tendrils</b> — chosen creatures within 30 ft: CON save or 1d12 necrotic. You gain 1d12 temp HP.</td></tr>
+      <tr><td>2</td><td><b>Blink step</b> — teleport 30 ft now, and again every turn as a bonus action while raging.</td></tr>
+      <tr><td>3</td><td><b>Exploding spirit</b> — flumph or pixie (your call) appears next to an enemy, explodes end of turn: 5 ft, DEX save or 1d6 force. Again each turn as a bonus action.</td></tr>
+      <tr><td>4</td><td><b>Force weapon</b> — your weapon deals force damage, becomes light + thrown (20/60), and boomerangs back to your hand.</td></tr>
+      <tr><td>5</td><td><b>Retribution</b> — anyone who hits you takes 1d6 force. Automatically.</td></tr>
+      <tr><td>6</td><td><b>Rainbow ward</b> — +1 AC for you AND allies within 10 ft.</td></tr>
+      <tr><td>7</td><td><b>Flower field</b> — ground within 15 ft of you is difficult terrain for enemies. Very intimidating flowers.</td></tr>
+      <tr><td>8</td><td><b>Light bolt</b> — one creature within 30 ft: CON save or 1d6 radiant + blinded until your next turn. Again each turn as a bonus action.</td></tr>
+    </table></div>
+  </details>
 
   <h3 class="sec">Attacks <span class="slots">· 2 per Attack action · +2 dmg while raging</span></h3>
   <div class="rows">
@@ -520,7 +535,7 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
     <div class="stat"><b>2/LR</b><span>Channel Div.</span></div>
   </div>
   <div class="turn-slot"></div>
-  <div class="hint"><b>Default turn:</b> Attack: hammer + axe (Nick gives you a 3rd swing, once/turn) → on a solid hit, Bonus: Divine Smite. <b>You have MANY bonus actions — pick ONE per turn:</b> Smite, Lay on Hands, Shield of Faith, Peerless Athlete, cloak billow…</div>
+  <div class="hint"><b>Default turn:</b> Attack: hammer + axe (Nick gives you a 3rd swing, once/turn) → on a solid hit, Bonus: Divine Smite. <b>You have MANY bonus actions — pick ONE per turn:</b> Smite, Divine Favor, Lay on Hands, Peerless Athlete, cloak billow…</div>
 
   <h3 class="sec">Attacks <span class="slots">· 2 per Attack action (+1 via Nick)</span></h3>
   <div class="rows">
@@ -542,10 +557,11 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
 
   <h3 class="sec">Spells <span class="slots">· 1st ○○○○ · 2nd ○○ · oath spells always ready</span></h3>
   <div class="rows">
+    <div class="row2 a"><div class="nm">Command <small>1st · 60 ft</small></div><div class="fx">WIS 14 or they obey one word: <b>Approach · Drop · Flee · Grovel</b> (prone) · <b>Halt</b>. Upcast: +1 target per slot level.</div></div>
+    <div class="row2 b"><div class="nm">Divine Favor <small>1st · self · 1 min, no concentration!</small></div><div class="fx">Every weapon hit deals <b>+1d4 radiant</b> — with your 3 swings that's 3d4/turn from one bonus action.</div></div>
+    <div class="row2 b"><div class="nm">Searing Smite <small>1st · after a melee hit</small></div><div class="fx"><b>+1d6 fire</b>, then 1d6 fire at the start of each of its turns until it saves (CON 14). No concentration.</div></div>
+    <div class="row2 b"><div class="nm">Lesser Restoration <small>2nd · touch</small></div><div class="fx">End one condition: <b>Blinded, Deafened, Paralyzed, or Poisoned</b>. Bonus action!</div></div>
     <div class="row2 a"><div class="nm">Guiding Bolt <small>1st · oath · 120 ft</small></div><div class="fx">+6 vs AC: <b>4d6 radiant</b> + next attack on target has advantage.</div></div>
-    <div class="row2 a"><div class="nm">Command <small>1st · 60 ft</small></div><div class="fx">WIS 14 or they obey one word: Drop! Flee! Grovel! (prone).</div></div>
-    <div class="row2 b"><div class="nm">Shield of Faith <small>1st · <span class="chip c">C</span></small></div><div class="fx">+2 AC on someone for 10 min.</div></div>
-    <div class="row2 b"><div class="nm">Searing / Shining Smite <small>1st/2nd · <span class="chip c">C</span></small></div><div class="fx">Extra rider damage/glow on your next/current hits.</div></div>
     <div class="row2 a"><div class="nm">Heroism <small>1st · oath · <span class="chip c">C</span></small></div><div class="fx">Ally is immune to Frightened + temp HP each turn.</div></div>
     <div class="row2 a"><div class="nm">Find Steed <small>2nd · free 1/LR</small></div><div class="fx">Summon your loyal steed. Yes, even indoors. Especially indoors.</div></div>
     <div class="row2 a"><div class="nm">Enhance Ability / Magic Weapon <small>2nd · oath</small></div><div class="fx">Advantage on one ability's checks (C) / weapon +1 (bonus action).</div></div>
@@ -654,7 +670,8 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
     "Animal Friendship / Beast Bond / Locate Animals [R]": S+"animal%20friendship_xphb",
     "Guiding Bolt": S+"guiding%20bolt_xphb", "Command": S+"command_xphb",
     "Shield of Faith": S+"shield%20of%20faith_xphb",
-    "Searing / Shining Smite": S+"searing%20smite_xphb", "Heroism": S+"heroism_xphb",
+    "Searing Smite": S+"searing%20smite_xphb", "Heroism": S+"heroism_xphb",
+    "Divine Favor": S+"divine%20favor_xphb", "Lesser Restoration": S+"lesser%20restoration_xphb",
     "Find Steed": S+"find%20steed_xphb", "Enhance Ability / Magic Weapon": S+"enhance%20ability_xphb",
     "Divine Smite": S+"divine%20smite_xphb", "Faerie Fire": S+"faerie%20fire_xphb",
     "Absorb Elements": S+"absorb%20elements_xge", "Pass without Trace": S+"pass%20without%20trace_xphb",

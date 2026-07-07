@@ -107,6 +107,19 @@ section.char.active{display:block}
 .row2 .fx b{color:var(--ink); font-weight:600}
 h3.sec{font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin:1.15rem 0 .35rem}
 .slots{color:var(--ink-faint); font-size:.8rem; letter-spacing:.12em}
+/* abilities & skills */
+.abil{display:grid; grid-template-columns:repeat(3,1fr); gap:.4rem}
+.abil .a{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:.35rem .2rem; text-align:center}
+.abil .a span{display:block; font-size:.6rem; letter-spacing:.08em; color:var(--ink-faint)}
+.abil .a b{font-size:1rem; font-variant-numeric:tabular-nums}
+.abil .a .sv{display:block; font-size:.68rem; color:var(--ink-dim); font-variant-numeric:tabular-nums}
+.abil .a.pf .sv{color:var(--gold); font-weight:700}
+.skills{display:grid; grid-template-columns:1fr 1fr; gap:.1rem .9rem; margin-top:.6rem}
+.skills .sk{display:flex; justify-content:space-between; gap:.4rem; border-bottom:1px dashed var(--line); padding:.14rem 0; font-size:.8rem; color:var(--ink-faint)}
+.skills .sk.pf{color:var(--ink)}
+.skills .sk.ex{color:var(--gold)}
+.skills .sk b{font-variant-numeric:tabular-nums; font-weight:650}
+.legend{font-size:.7rem; color:var(--ink-faint); margin:.5rem 0 0}
 /* details */
 details{border:1px solid var(--line); border-radius:8px; background:var(--card2); margin:.6rem 0}
 details summary{cursor:pointer; padding:.6rem .8rem; font-weight:600; font-size:.88rem; color:var(--ink-dim); list-style:none; display:flex; justify-content:space-between; align-items:center}
@@ -262,6 +275,40 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
     <div class="stat"><b>d8 ×3</b><span>Bard. Insp.</span></div>
     <div class="stat"><b>60 ft</b><span>Darkvision</span></div>
   </div>
+  <details>
+    <summary>Abilities &amp; skills</summary>
+    <div class="inner">
+      <div class="abil">
+        <div class="a"><span>STR</span><b>10</b> (+0)<span class="sv">save +0</span></div>
+        <div class="a pf"><span>DEX</span><b>14</b> (+2)<span class="sv">save +5</span></div>
+        <div class="a"><span>CON</span><b>14</b> (+2)<span class="sv">save +2</span></div>
+        <div class="a"><span>INT</span><b>12</b> (+1)<span class="sv">save +1</span></div>
+        <div class="a"><span>WIS</span><b>12</b> (+1)<span class="sv">save +1</span></div>
+        <div class="a pf"><span>CHA</span><b>16</b> (+3)<span class="sv">save +6</span></div>
+      </div>
+      <div class="skills">
+        <div class="sk"><span>Acrobatics</span><b>+3</b></div>
+        <div class="sk"><span>Animal Handling</span><b>+2</b></div>
+        <div class="sk pf"><span>Arcana</span><b>+4</b></div>
+        <div class="sk"><span>Athletics</span><b>+1</b></div>
+        <div class="sk ex"><span>Deception ◆</span><b>+9</b></div>
+        <div class="sk"><span>History</span><b>+2</b></div>
+        <div class="sk"><span>Insight</span><b>+2</b></div>
+        <div class="sk"><span>Intimidation</span><b>+4</b></div>
+        <div class="sk"><span>Investigation</span><b>+2</b></div>
+        <div class="sk"><span>Medicine</span><b>+2</b></div>
+        <div class="sk pf"><span>Nature</span><b>+4</b></div>
+        <div class="sk"><span>Perception</span><b>+2</b></div>
+        <div class="sk pf"><span>Performance</span><b>+6</b></div>
+        <div class="sk"><span>Persuasion</span><b>+4</b></div>
+        <div class="sk"><span>Religion</span><b>+2</b></div>
+        <div class="sk ex"><span>Sleight of Hand ◆</span><b>+8</b></div>
+        <div class="sk"><span>Stealth</span><b>+3</b></div>
+        <div class="sk"><span>Survival</span><b>+2</b></div>
+      </div>
+      <p class="legend">bright = proficient · gold ◆ = expertise · Jack of All Trades (+1 everywhere) already included</p>
+    </div>
+  </details>
   <div class="turn-slot"></div>
 
   <div class="lost">
@@ -353,6 +400,40 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
     <div class="stat"><b>2× L3</b><span>Pact slots</span></div>
     <div class="stat"><b>120 ft</b><span>Devil's Sight</span></div>
   </div>
+  <details>
+    <summary>Abilities &amp; skills</summary>
+    <div class="inner">
+      <div class="abil">
+        <div class="a"><span>STR</span><b>8</b> (−1)<span class="sv">save −1</span></div>
+        <div class="a"><span>DEX</span><b>14</b> (+2)<span class="sv">save +2</span></div>
+        <div class="a"><span>CON</span><b>14</b> (+2)<span class="sv">save +2</span></div>
+        <div class="a"><span>INT</span><b>12</b> (+1)<span class="sv">save +1</span></div>
+        <div class="a pf"><span>WIS</span><b>11</b> (+0)<span class="sv">save +3</span></div>
+        <div class="a pf"><span>CHA</span><b>18</b> (+4)<span class="sv">save +7</span></div>
+      </div>
+      <div class="skills">
+        <div class="sk"><span>Acrobatics</span><b>+2</b></div>
+        <div class="sk"><span>Animal Handling</span><b>+0</b></div>
+        <div class="sk"><span>Arcana</span><b>+1</b></div>
+        <div class="sk"><span>Athletics</span><b>−1</b></div>
+        <div class="sk pf"><span>Deception</span><b>+7</b></div>
+        <div class="sk"><span>History</span><b>+1</b></div>
+        <div class="sk"><span>Insight</span><b>+0</b></div>
+        <div class="sk pf"><span>Intimidation</span><b>+7</b></div>
+        <div class="sk"><span>Investigation</span><b>+1</b></div>
+        <div class="sk"><span>Medicine</span><b>+0</b></div>
+        <div class="sk"><span>Nature</span><b>+1</b></div>
+        <div class="sk"><span>Perception</span><b>+0</b></div>
+        <div class="sk"><span>Performance</span><b>+4</b></div>
+        <div class="sk"><span>Persuasion</span><b>+4</b></div>
+        <div class="sk"><span>Religion</span><b>+1</b></div>
+        <div class="sk pf"><span>Sleight of Hand</span><b>+5</b></div>
+        <div class="sk pf"><span>Stealth</span><b>+5</b></div>
+        <div class="sk"><span>Survival</span><b>+0</b></div>
+      </div>
+      <p class="legend">bright = proficient</p>
+    </div>
+  </details>
   <div class="turn-slot"></div>
   <div class="hint"><b>Default turn:</b> Eldritch Blast twice (+7, 1d10+4 each, can split targets). Slots come back on a <b>short rest</b> — don't hoard them. Stand in dim light: free Invisibility.</div>
 
@@ -415,6 +496,40 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
     <div class="stat"><b>2</b><span>Attacks</span></div>
     <div class="stat"><b>+7</b><span>Stealth</span></div>
   </div>
+  <details>
+    <summary>Abilities &amp; skills</summary>
+    <div class="inner">
+      <div class="abil">
+        <div class="a pf"><span>STR</span><b>12</b> (+1)<span class="sv">save +4</span></div>
+        <div class="a pf"><span>DEX</span><b>18</b> (+4)<span class="sv">save +7</span></div>
+        <div class="a"><span>CON</span><b>12</b> (+1)<span class="sv">save +1</span></div>
+        <div class="a"><span>INT</span><b>10</b> (+0)<span class="sv">save +0</span></div>
+        <div class="a"><span>WIS</span><b>14</b> (+2)<span class="sv">save +2</span></div>
+        <div class="a"><span>CHA</span><b>11</b> (+0)<span class="sv">save +0</span></div>
+      </div>
+      <div class="skills">
+        <div class="sk"><span>Acrobatics</span><b>+4</b></div>
+        <div class="sk pf"><span>Animal Handling</span><b>+5</b></div>
+        <div class="sk"><span>Arcana</span><b>+0</b></div>
+        <div class="sk ex"><span>Athletics ◆</span><b>+7</b></div>
+        <div class="sk"><span>Deception</span><b>+0</b></div>
+        <div class="sk"><span>History</span><b>+0</b></div>
+        <div class="sk"><span>Insight</span><b>+2</b></div>
+        <div class="sk"><span>Intimidation</span><b>+0</b></div>
+        <div class="sk"><span>Investigation</span><b>+0</b></div>
+        <div class="sk pf"><span>Medicine</span><b>+5</b></div>
+        <div class="sk"><span>Nature</span><b>+0</b></div>
+        <div class="sk"><span>Perception</span><b>+2</b></div>
+        <div class="sk pf"><span>Performance</span><b>+3</b></div>
+        <div class="sk pf"><span>Persuasion</span><b>+3</b></div>
+        <div class="sk"><span>Religion</span><b>+0</b></div>
+        <div class="sk"><span>Sleight of Hand</span><b>+4</b></div>
+        <div class="sk pf"><span>Stealth</span><b>+7</b></div>
+        <div class="sk pf"><span>Survival</span><b>+5</b></div>
+      </div>
+      <p class="legend">bright = proficient · gold ◆ = expertise · remember: advantage on saves vs ALL magic</p>
+    </div>
+  </details>
   <div class="turn-slot"></div>
   <div class="hint"><b>Default turn:</b> Bonus: Hunter's Mark (free 3/LR) → Attack twice with the bow (+9) → beast attacks too (replace one of your attacks, or command it as your bonus action next turns).</div>
 
@@ -471,6 +586,40 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
     <div class="stat"><b>3/LR</b><span>Rages</span></div>
     <div class="stat"><b>12</b><span>Pass. Perc.</span></div>
   </div>
+  <details>
+    <summary>Abilities &amp; skills</summary>
+    <div class="inner">
+      <div class="abil">
+        <div class="a pf"><span>STR</span><b>18</b> (+4)<span class="sv">save +7</span></div>
+        <div class="a"><span>DEX</span><b>14</b> (+2)<span class="sv">save +2</span></div>
+        <div class="a pf"><span>CON</span><b>16</b> (+3)<span class="sv">save +6</span></div>
+        <div class="a"><span>INT</span><b>10</b> (+0)<span class="sv">save +0</span></div>
+        <div class="a"><span>WIS</span><b>8</b> (−1)<span class="sv">save −1</span></div>
+        <div class="a"><span>CHA</span><b>10</b> (+0)<span class="sv">save +0</span></div>
+      </div>
+      <div class="skills">
+        <div class="sk pf"><span>Acrobatics</span><b>+5</b></div>
+        <div class="sk"><span>Animal Handling</span><b>−1</b></div>
+        <div class="sk"><span>Arcana</span><b>+0</b></div>
+        <div class="sk pf"><span>Athletics</span><b>+7</b></div>
+        <div class="sk"><span>Deception</span><b>+0</b></div>
+        <div class="sk"><span>History</span><b>+0</b></div>
+        <div class="sk"><span>Insight</span><b>−1</b></div>
+        <div class="sk pf"><span>Intimidation</span><b>+3</b></div>
+        <div class="sk"><span>Investigation</span><b>+0</b></div>
+        <div class="sk"><span>Medicine</span><b>−1</b></div>
+        <div class="sk"><span>Nature</span><b>+0</b></div>
+        <div class="sk pf"><span>Perception</span><b>+2</b></div>
+        <div class="sk pf"><span>Performance</span><b>+3</b></div>
+        <div class="sk"><span>Persuasion</span><b>+0</b></div>
+        <div class="sk"><span>Religion</span><b>+0</b></div>
+        <div class="sk"><span>Sleight of Hand</span><b>+2</b></div>
+        <div class="sk"><span>Stealth</span><b>+2</b></div>
+        <div class="sk pf"><span>Survival</span><b>+2</b></div>
+      </div>
+      <p class="legend">bright = proficient · while raging: Acrobatics/Intimidation/Perception/Stealth/Survival may use STR (+7)</p>
+    </div>
+  </details>
   <div class="turn-slot"></div>
   <div class="hint"><b>Default turn:</b> Bonus: RAGE → attack twice, Reckless if you want to hit hard. Keep Stone's Endurance ready for the first big hit you take.</div>
 
@@ -534,6 +683,40 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
     <div class="stat"><b>25</b><span>Lay on Hands</span></div>
     <div class="stat"><b>2/LR</b><span>Channel Div.</span></div>
   </div>
+  <details>
+    <summary>Abilities &amp; skills</summary>
+    <div class="inner">
+      <div class="abil">
+        <div class="a"><span>STR</span><b>16</b> (+3)<span class="sv">save +3</span></div>
+        <div class="a"><span>DEX</span><b>12</b> (+1)<span class="sv">save +1</span></div>
+        <div class="a"><span>CON</span><b>12</b> (+1)<span class="sv">save +1</span></div>
+        <div class="a"><span>INT</span><b>8</b> (−1)<span class="sv">save −1</span></div>
+        <div class="a pf"><span>WIS</span><b>10</b> (+0)<span class="sv">save +3</span></div>
+        <div class="a pf"><span>CHA</span><b>16</b> (+3)<span class="sv">save +6</span></div>
+      </div>
+      <div class="skills">
+        <div class="sk"><span>Acrobatics</span><b>+1</b></div>
+        <div class="sk"><span>Animal Handling</span><b>+0</b></div>
+        <div class="sk"><span>Arcana</span><b>−1</b></div>
+        <div class="sk"><span>Athletics</span><b>+3</b></div>
+        <div class="sk"><span>Deception</span><b>+3</b></div>
+        <div class="sk pf"><span>History</span><b>+2</b></div>
+        <div class="sk pf"><span>Insight</span><b>+3</b></div>
+        <div class="sk pf"><span>Intimidation</span><b>+6</b></div>
+        <div class="sk"><span>Investigation</span><b>−1</b></div>
+        <div class="sk"><span>Medicine</span><b>+0</b></div>
+        <div class="sk"><span>Nature</span><b>−1</b></div>
+        <div class="sk"><span>Perception</span><b>+0</b></div>
+        <div class="sk"><span>Performance</span><b>+3</b></div>
+        <div class="sk pf"><span>Persuasion</span><b>+6</b></div>
+        <div class="sk"><span>Religion</span><b>−1</b></div>
+        <div class="sk"><span>Sleight of Hand</span><b>+1</b></div>
+        <div class="sk"><span>Stealth</span><b>+1</b></div>
+        <div class="sk"><span>Survival</span><b>+0</b></div>
+      </div>
+      <p class="legend">bright = proficient · Peerless Athlete (Channel Div.): 1 h advantage on Athletics &amp; Acrobatics</p>
+    </div>
+  </details>
   <div class="turn-slot"></div>
   <div class="hint"><b>Default turn:</b> Attack: hammer + axe (Nick gives you a 3rd swing, once/turn) → on a solid hit, Bonus: Divine Smite. <b>You have MANY bonus actions — pick ONE per turn:</b> Smite, Divine Favor, Lay on Hands, Peerless Athlete, cloak billow…</div>
 
@@ -597,6 +780,40 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
     <div class="stat"><b>2/LR</b><span>Wild Shape</span></div>
     <div class="stat"><b>641</b><span>gp 💰</span></div>
   </div>
+  <details>
+    <summary>Abilities &amp; skills</summary>
+    <div class="inner">
+      <div class="abil">
+        <div class="a"><span>STR</span><b>13</b> (+1)<span class="sv">save +1</span></div>
+        <div class="a"><span>DEX</span><b>15</b> (+2)<span class="sv">save +2</span></div>
+        <div class="a"><span>CON</span><b>12</b> (+1)<span class="sv">save +1</span></div>
+        <div class="a pf"><span>INT</span><b>15</b> (+2)<span class="sv">save +5</span></div>
+        <div class="a pf"><span>WIS</span><b>16</b> (+3)<span class="sv">save +6</span></div>
+        <div class="a"><span>CHA</span><b>10</b> (+0)<span class="sv">save +0</span></div>
+      </div>
+      <div class="skills">
+        <div class="sk"><span>Acrobatics</span><b>+2</b></div>
+        <div class="sk"><span>Animal Handling</span><b>+3</b></div>
+        <div class="sk pf"><span>Arcana</span><b>+5</b></div>
+        <div class="sk"><span>Athletics</span><b>+1</b></div>
+        <div class="sk"><span>Deception</span><b>+0</b></div>
+        <div class="sk"><span>History</span><b>+2</b></div>
+        <div class="sk"><span>Insight</span><b>+3</b></div>
+        <div class="sk"><span>Intimidation</span><b>+0</b></div>
+        <div class="sk"><span>Investigation</span><b>+2</b></div>
+        <div class="sk pf"><span>Medicine</span><b>+6</b></div>
+        <div class="sk ex"><span>Nature ◆</span><b>+8</b></div>
+        <div class="sk"><span>Perception</span><b>+3</b></div>
+        <div class="sk"><span>Performance</span><b>+0</b></div>
+        <div class="sk"><span>Persuasion</span><b>+0</b></div>
+        <div class="sk"><span>Religion</span><b>+2</b></div>
+        <div class="sk pf"><span>Sleight of Hand</span><b>+5</b></div>
+        <div class="sk pf"><span>Stealth</span><b>+5</b></div>
+        <div class="sk"><span>Survival</span><b>+3</b></div>
+      </div>
+      <p class="legend">bright = proficient · gold ◆ = expertise · CON reflects the fix to 12 (PDF still shows 8)</p>
+    </div>
+  </details>
   <div class="turn-slot"></div>
   <div class="hint"><b>Default turn:</b> hold Concentration on Moonbeam or Faerie Fire, cantrip (+6, 2d10 Fire Bolt) with your action, Healing Word as bonus when someone drops. Keep one 3rd-level slot for <b>Revivify</b> (needs a 300 gp diamond — buy one!).</div>
 

@@ -155,10 +155,11 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
   <p>Your special resource is <b>Sorcery Points (SP)</b> — 5 per day. Think of them as raw, liquid magic: you can burn them to <b>bend your spells</b> (Metamagic), <b>convert them into extra spell slots</b>, or fuel your shadow powers. Managing SP is your little economy game.</p>
 
   <h3>Your shadow side</h3>
-  <p>Your subclass (Shadow Magic) gives you three quiet superpowers:</p>
-  <p><b>1. Eyes of the Dark.</b> You see 120 ft in darkness — twice as far as other darkvision. The dark is your home turf.</p>
-  <p><b>2. The Darkness trick.</b> You know the Darkness spell, and when you cast it with <b>2 sorcery points</b> (instead of a slot), <b>you can see through your own darkness</b>. Nobody else can — not friends, not enemies. Drop it on a fight and you're the only person in the room with eyes. (Mako's Devil's Sight also pierces it — you two are natural partners in crime.)</p>
-  <p><b>3. Strength of the Grave.</b> Once per day, when damage would drop you to 0 HP, you can make a Charisma save to stay at <b>1 HP instead</b>. The Shadowfell doesn't want you back yet.</p>
+  <p>Your subclass (Shadow Sorcery, 2024 version) gives you four quiet superpowers:</p>
+  <p><b>1. Eyes of the Dark.</b> You see 120 ft in darkness — twice as far as normal darkvision — plus <b>Blindsight 10 ft</b>: within 10 feet you don't need eyes at all (invisible things included).</p>
+  <p><b>2. The Darkness trick.</b> You always have the Darkness spell ready, and <b>you see through any darkness your own spells create</b>. Nobody else can — not friends, not enemies. Drop it on a fight and you're the only person in the room with working eyes. (Mako's Devil's Sight also pierces it — you two are natural partners in crime.)</p>
+  <p><b>3. Strength of the Grave.</b> Once per day, when damage would drop you to 0 HP, make a Charisma save — on a success you snap to <b>9 HP</b> instead of falling. The Shadowfell doesn't want you back yet.</p>
+  <p><b>4. Shadow gifts.</b> The Shadowfell hands you six extra spells, always ready, on top of your own list: Bane, Darkness, Inflict Wounds, <b>Pass Without Trace</b> (+10 Stealth for the whole crew — you're the heist enabler), Hunger of Hadar, and Nondetection.</p>
 
   <h3>How a fight usually goes</h3>
   <p>Round one: if things look serious, use your <b>Bonus Action for Innate Sorcery</b> (your spells get harder to resist and your spell attacks get advantage for a minute). Then throw damage: <b>Fireball</b> for groups, <b>Sorcerous Burst or Force Blast</b> (your at-will cantrips, both hit like crossbows) for single targets, <b>Magic Missile</b> when you absolutely cannot afford to miss. Keep <b>Shield</b> in your pocket — it's a <i>reaction</i> that adds +5 AC when something would hit you.</p>
@@ -204,7 +205,7 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
     <ol>
       <li><span class="chip a">ACTION</span> <b>Sorcerous Burst</b> or <b>Force Blast</b> at the scariest enemy (+8, 2d8). Cantrips are free — spam away.</li>
       <li>Big group of enemies? <span class="chip a">ACTION</span> <b>Fireball</b>. Say "Careful Spell" first (1 SP) to protect up to 4 friends in the blast.</li>
-      <li>In trouble? <span class="chip b">BONUS</span> <b>Misty Step</b> away, then Dodge — or drop <b>Darkness</b> on yourself (2 SP) and walk out; only you can see in it.</li>
+      <li>In trouble? <span class="chip b">BONUS</span> <b>Misty Step</b> away, then Dodge — or drop <b>Darkness</b> on yourself and walk out; only you can see in it.</li>
     </ol>
     <p class="warnbox">⚠ Cast <b>Mage Armor</b> every morning (AC 11 → 14, lasts 8 h). ⚠ <b>Shield</b> is a reaction — shout it when something is about to hit you, before damage is rolled.</p>
   </div>
@@ -220,10 +221,19 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
 
   <h3 class="sec">Shadow powers 🌑</h3>
   <div class="rows">
-    <div class="row2 a"><div class="nm">Darkness — your version <small>2 SP · <span class="chip c">C</span> 10 min</small></div><div class="fx">15-ft sphere of magical darkness that <b>you alone can see through</b> (only when paid with SP, not a slot). Blind a fight; you and Mako keep aiming.</div></div>
-    <div class="row2 p"><div class="nm">Strength of the Grave <small>1 / long rest</small></div><div class="fx">Dropped to 0 HP (not radiant, not a crit)? CHA save DC 5 + damage taken → stay at <b>1 HP</b>.</div></div>
-    <div class="row2 p"><div class="nm">Eyes of the Dark</div><div class="fx">Darkvision 120 ft.</div></div>
+    <div class="row2 a"><div class="nm">Darkness — your version <small>always prepared · <span class="chip c">C</span> 10 min</small></div><div class="fx">15-ft sphere of magical darkness that <b>you alone can see through</b> (any darkness YOUR spells create). Blind a fight; you and Mako keep aiming.</div></div>
+    <div class="row2 p"><div class="nm">Strength of the Grave <small>1 / long rest</small></div><div class="fx">Dropped to 0 HP (not radiant, not a crit)? CHA save DC 5 + damage taken → you stay up at <b>9 HP</b>.</div></div>
+    <div class="row2 p"><div class="nm">Eyes of the Dark</div><div class="fx">Darkvision 120 ft + <b>Blindsight 10 ft</b> (see without eyes — invisibility doesn't help anyone near you).</div></div>
     <div class="row2 r"><div class="nm">Hellish Rebuke <small>1 / long rest · free</small></div><div class="fx">Reaction when damaged: DEX 15, <b>3d10 fire</b> back at them.</div></div>
+  </div>
+
+  <h3 class="sec">Shadow gifts (always prepared, free extras)</h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Pass without Trace <small>2nd · <span class="chip c">C</span> 1 h</small></div><div class="fx"><b>+10 Stealth for the whole group.</b> THE heist spell — cast it before the crew moves, guard the concentration.</div></div>
+    <div class="row2 a"><div class="nm">Hunger of Hadar <small>3rd · 150 ft · <span class="chip c">C</span></small></div><div class="fx">20-ft sphere of void: pitch black (you see through it!), difficult terrain, <b>2d6 cold</b> on their turn start, DEX save or <b>2d6 acid</b> at turn end. A nightmare zone.</div></div>
+    <div class="row2 a"><div class="nm">Bane <small>1st · <span class="chip c">C</span></small></div><div class="fx">Up to 3 enemies: CHA save or <b>−1d4 on every attack and save</b>.</div></div>
+    <div class="row2 a"><div class="nm">Inflict Wounds <small>1st · melee</small></div><div class="fx">Touch attack +8: <b>2d10 necrotic</b>. For when something gets too close anyway.</div></div>
+    <div class="row2 a"><div class="nm">Nondetection <small>3rd · 8 h</small></div><div class="fx">Target hidden from divination magic and scrying. Anti-surveillance for heists.</div></div>
   </div>
 
   <h3 class="sec">Spells <span class="slots">· 1st ○○○○ · 2nd ○○○ · 3rd ○○</span></h3>
@@ -336,6 +346,9 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
     "Enlarge/Reduce": S+"enlarge%2freduce_xphb",
     "Maximilian's Earthen Grasp": S+"maximilian's%20earthen%20grasp_xge",
     "Melf's Minute Meteors": S+"melf's%20minute%20meteors_xge",
+    "Bane": S+"bane_xphb", "Inflict Wounds": S+"inflict%20wounds_xphb",
+    "Pass without Trace": S+"pass%20without%20trace_xphb",
+    "Hunger of Hadar": S+"hunger%20of%20hadar_xphb", "Nondetection": S+"nondetection_xphb",
     "Sorcerous Burst": S+"sorcerous%20burst_xphb", "Mage Hand": S+"mage%20hand_xphb",
     "Message": S+"message_xphb", "Prestidigitation": S+"prestidigitation_xphb",
     "Thaumaturgy": S+"thaumaturgy_xphb",

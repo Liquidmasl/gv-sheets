@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Melli — Shadow Sorcerer</title>
+<style>
+:root{
+  --bg:#191512; --card:#221c17; --card2:#2a231d; --line:#3a322a;
+  --ink:#e9e1d3; --ink-dim:#a89e8e; --ink-faint:#7a7264;
+  --gold:#c9a227;
+  --act:#d97b3f; --bon:#43a48d; --rea:#a184d9; --pas:#8a8378;
+  --act-bg:rgba(217,123,63,.14); --bon-bg:rgba(67,164,141,.14); --rea-bg:rgba(161,132,217,.16); --pas-bg:rgba(138,131,120,.14);
+  --warn:#d9a73f;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#f0eee9; --card:#ffffff; --card2:#f7f5f0; --line:#ddd8cf;
+    --ink:#26211c; --ink-dim:#6b6355; --ink-faint:#98907f;
+    --gold:#a07f14;
+    --act:#b35a22; --bon:#1e7f6a; --rea:#7757b8; --pas:#7c7466;
+    --act-bg:rgba(179,90,34,.10); --bon-bg:rgba(30,127,106,.10); --rea-bg:rgba(119,87,184,.11); --pas-bg:rgba(124,116,102,.12);
+    --warn:#a5761a;
+  }
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font:16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:28rem; margin:0 auto; padding:0 .8rem 4rem}
+h1,h2,h3,.charname{font-family:"Iowan Old Style", Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif}
+/* site header */
+header.site{position:sticky; top:0; z-index:30; background:var(--bg); border-bottom:1px solid var(--line);
+  display:flex; align-items:center; gap:.6rem; padding:.55rem .9rem; font-size:.85rem}
+header.site a{color:var(--gold); text-decoration:none; font-weight:700}
+header.site .pg{color:var(--ink-dim)}
+header.site .basics{margin-left:auto}
+header.site .basics a{color:var(--ink-faint); font-weight:400; font-size:.78rem}
+/* subnav tabs (per-page) */
+nav.sub{position:sticky; top:2.3rem; z-index:25; background:var(--bg); display:flex; gap:.4rem;
+  padding:.5rem .9rem; border-bottom:1px solid var(--line)}
+nav.sub button{flex:1; border:1px solid var(--line); background:var(--card); color:var(--ink-dim);
+  border-radius:999px; padding:.42rem .6rem; font:600 .85rem/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; cursor:pointer}
+nav.sub button[aria-selected="true"]{color:var(--ink); border-color:var(--gold); box-shadow:inset 0 -2px 0 var(--gold)}
+nav.sub button:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+section.panel{display:none}
+section.panel.active{display:block}
+@media (prefers-reduced-motion: no-preference){
+  section.panel.active{animation:fade .18s ease}
+  @keyframes fade{from{opacity:.4}to{opacity:1}}
+}
+/* character header */
+.charhead{padding:1rem .2rem .1rem}
+.charname{margin:0; font-size:1.55rem; line-height:1.15; text-wrap:balance}
+.charsub{margin:.15rem 0 0; color:var(--ink-dim); font-size:.86rem}
+/* cards & stats */
+.card{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:.85rem .9rem; margin:.8rem 0}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:.45rem; margin:.75rem 0}
+.stat{background:var(--card); border:1px solid var(--line); border-radius:8px; text-align:center; padding:.45rem .2rem}
+.stat b{display:block; font-size:1.15rem; font-variant-numeric:tabular-nums}
+.stat span{font-size:.62rem; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-faint)}
+/* chips */
+.chip{display:inline-block; font-size:.64rem; font-weight:700; letter-spacing:.05em; border-radius:4px; padding:.1rem .4rem .12rem; vertical-align:1px; white-space:nowrap}
+.chip.a{color:var(--act); background:var(--act-bg)}
+.chip.b{color:var(--bon); background:var(--bon-bg)}
+.chip.r{color:var(--rea); background:var(--rea-bg)}
+.chip.p{color:var(--pas); background:var(--pas-bg)}
+.chip.c{color:var(--warn); background:transparent; border:1px solid var(--warn); font-weight:600}
+/* turn budget */
+.budget{display:flex; flex-direction:column; gap:.45rem}
+.budget .row{display:flex; gap:.6rem; align-items:baseline}
+.budget .tok{flex:0 0 5.2rem; text-align:right; font-weight:700; font-size:.78rem; letter-spacing:.04em}
+.budget .tok.a{color:var(--act)} .budget .tok.b{color:var(--bon)} .budget .tok.r{color:var(--rea)} .budget .tok.m{color:var(--gold)} .budget .tok.f{color:var(--pas)}
+.budget .desc{color:var(--ink-dim); font-size:.85rem}
+.budget .desc b{color:var(--ink); font-weight:600}
+/* ability / spell rows */
+.rows{display:flex; flex-direction:column; gap:.55rem; margin:.2rem 0 0}
+.row2{border-left:3px solid var(--line); padding:.05rem 0 .05rem .55rem}
+.row2.a{border-color:var(--act)} .row2.b{border-color:var(--bon)} .row2.r{border-color:var(--rea)} .row2.p{border-color:var(--pas)}
+.row2 .nm{font-weight:650; font-size:.92rem}
+.row2 .nm small{font-weight:400; color:var(--ink-faint)}
+.row2 .nm a{color:inherit; text-decoration:underline dotted; text-decoration-color:var(--ink-faint); text-underline-offset:3px}
+.row2 .nm a::after{content:"↗"; font-size:.6em; color:var(--ink-faint); margin-left:.2em; vertical-align:super}
+.row2 .nm a:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+.row2 .fx{color:var(--ink-dim); font-size:.84rem; margin-top:.05rem}
+.row2 .fx b{color:var(--ink); font-weight:600}
+h3.sec{font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin:1.15rem 0 .35rem}
+.slots{color:var(--ink-faint); font-size:.8rem; letter-spacing:.12em}
+/* abilities & skills */
+.abil{display:grid; grid-template-columns:repeat(3,1fr); gap:.4rem}
+.abil .a{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:.35rem .2rem; text-align:center}
+.abil .a span{display:block; font-size:.6rem; letter-spacing:.08em; color:var(--ink-faint)}
+.abil .a b{font-size:1rem; font-variant-numeric:tabular-nums}
+.abil .a .sv{display:block; font-size:.68rem; color:var(--ink-dim); font-variant-numeric:tabular-nums}
+.abil .a.pf .sv{color:var(--gold); font-weight:700}
+.skills{display:grid; grid-template-columns:1fr 1fr; gap:.1rem .9rem; margin-top:.6rem}
+.skills .sk{display:flex; justify-content:space-between; gap:.4rem; border-bottom:1px dashed var(--line); padding:.14rem 0; font-size:.8rem; color:var(--ink-faint)}
+.skills .sk.pf{color:var(--ink)}
+.skills .sk.ex{color:var(--gold)}
+.skills .sk b{font-variant-numeric:tabular-nums; font-weight:650}
+.legend{font-size:.7rem; color:var(--ink-faint); margin:.5rem 0 0}
+/* details */
+details{border:1px solid var(--line); border-radius:8px; background:var(--card2); margin:.6rem 0}
+details summary{cursor:pointer; padding:.6rem .8rem; font-weight:600; font-size:.88rem; color:var(--ink-dim); list-style:none; display:flex; justify-content:space-between; align-items:center}
+details summary::after{content:"+"; color:var(--ink-faint); font-size:1rem}
+details[open] summary::after{content:"–"}
+details summary:focus-visible{outline:2px solid var(--gold); outline-offset:-2px}
+details .inner{padding:0 .8rem .75rem}
+/* misc */
+table{border-collapse:collapse; width:100%; font-size:.83rem}
+td,th{padding:.32rem .45rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top}
+th{font-size:.66rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); font-weight:600}
+td:first-child{white-space:nowrap; font-weight:600; font-variant-numeric:tabular-nums}
+.tablewrap{overflow-x:auto}
+.hint{background:var(--card2); border:1px dashed var(--line); border-radius:8px; padding:.7rem .8rem; font-size:.85rem; color:var(--ink-dim); margin:.8rem 0}
+.hint b{color:var(--ink)}
+.lost{border:1px solid var(--bon); border-radius:8px; padding:.8rem .9rem; margin:.8rem 0; background:var(--bon-bg)}
+.lost h3{margin:0 0 .4rem; font-size:.95rem}
+.lost ol{margin:.2rem 0 0; padding-left:1.15rem; font-size:.88rem}
+.lost li{margin:.35rem 0}
+.warnbox{font-size:.83rem; color:var(--warn); margin:.5rem 0 0}
+/* intro prose */
+.intro p{font-size:.92rem; line-height:1.55}
+.intro h3{font-size:1.05rem; margin:1.3rem 0 .3rem}
+.intro .flavor{border-left:3px solid var(--gold); background:var(--card); padding:.65rem .9rem; margin:.8rem 0; font-style:italic; font-size:.92rem; border-radius:0 6px 6px 0}
+/* index cards */
+.crew{display:flex; flex-direction:column; gap:.6rem; margin-top:1rem}
+.crew a{display:block; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:.8rem 1rem; color:var(--ink); text-decoration:none}
+.crew a:hover{border-color:var(--gold)}
+.crew .cn{font-weight:700; font-size:1.05rem; font-family:"Iowan Old Style", Palatino, Georgia, serif}
+.crew .cc{color:var(--ink-dim); font-size:.82rem}
+footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2.5rem}
+
+</style>
+</head>
+<body>
+<header class="site">
+  <a href="index.html">🗝️ Golden Vault</a><span class="pg">Melli's sorcerer</span>
+  <span class="basics"><a href="basics.html">rules basics ↗</a></span>
+</header>
+<nav class="sub" role="tablist"><button role="tab" data-for="p-intro" aria-selected="false">Intro</button><button role="tab" data-for="p-play" aria-selected="false">Play</button><button role="tab" data-for="p-stats" aria-selected="false">Stats & Gear</button></nav>
+<div class="wrap">
+<section class="panel intro" id="p-intro">
+  <div class="charhead">
+    <h2 class="charname">Your Character</h2>
+    <p class="charsub">Tiefling · Sorcerer · Shadow Magic · Noble — <b>name still yours to choose!</b></p>
+  </div>
+  <div class="flavor">You were born into a noble house — fine clothes, a signet ring, a name that opens doors. You were also born a tiefling, with horns, a tail, and an infernal bloodline the family prefers not to discuss at dinner. And somewhere in that bloodline, something darker than hellfire stirred: the Shadowfell, the plane of gloom, left its fingerprint on your soul. Magic doesn't come to you from books or gods. It simply <i>happens</i> — and lately, the shadows have started answering back.</div>
+
+  <h3>What is a Sorcerer?</h3>
+  <p>Wizards study magic. Clerics pray for it. <b>You just have it.</b> It's in your blood, and your Charisma — your force of personality — is what shapes it. Mechanically you're the party's <b>artillery and trickster</b>: you throw the biggest damage in the group and warp the battlefield, but you're fragile, so you do it from the back row.</p>
+  <p>Your special resource is <b>Sorcery Points (SP)</b> — 5 per day. Think of them as raw, liquid magic: you can burn them to <b>bend your spells</b> (Metamagic), <b>convert them into extra spell slots</b>, or fuel your shadow powers. Managing SP is your little economy game.</p>
+
+  <h3>Your shadow side</h3>
+  <p>Your subclass (Shadow Magic) gives you three quiet superpowers:</p>
+  <p><b>1. Eyes of the Dark.</b> You see 120 ft in darkness — twice as far as other darkvision. The dark is your home turf.</p>
+  <p><b>2. The Darkness trick.</b> You know the Darkness spell, and when you cast it with <b>2 sorcery points</b> (instead of a slot), <b>you can see through your own darkness</b>. Nobody else can — not friends, not enemies. Drop it on a fight and you're the only person in the room with eyes. (Mako's Devil's Sight also pierces it — you two are natural partners in crime.)</p>
+  <p><b>3. Strength of the Grave.</b> Once per day, when damage would drop you to 0 HP, you can make a Charisma save to stay at <b>1 HP instead</b>. The Shadowfell doesn't want you back yet.</p>
+
+  <h3>How a fight usually goes</h3>
+  <p>Round one: if things look serious, use your <b>Bonus Action for Innate Sorcery</b> (your spells get harder to resist and your spell attacks get advantage for a minute). Then throw damage: <b>Fireball</b> for groups, <b>Sorcerous Burst or Force Blast</b> (your at-will cantrips, both hit like crossbows) for single targets, <b>Magic Missile</b> when you absolutely cannot afford to miss. Keep <b>Shield</b> in your pocket — it's a <i>reaction</i> that adds +5 AC when something would hit you.</p>
+  <p>And the party trick: your <b>Careful Spell</b> metamagic (1 SP) lets you drop a Fireball on a melee everyone's tangled in and <b>choose up to 4 friends to automatically pass the save</b>. Chumbo will love you.</p>
+
+  <h3>Out of a fight</h3>
+  <p>You're a noble with <b>Persuasion +7</b> — alongside Theron you're the party's voice. Your cantrips are a utility belt: <b>Prestidigitation</b> (small magical anything), <b>Mage Hand</b> (invisible floating hand), <b>Message</b> (whisper to anyone within 120 ft, they can whisper back). You also carry a crowbar. Nobles contain multitudes.</p>
+
+  <h3>Your weaknesses (know them, plan around them)</h3>
+  <p><b>You are squishy.</b> 32 HP and AC 11 naked — so <b>cast Mage Armor every morning</b> (one 1st-level slot, lasts 8 hours, AC becomes 14). Stay behind Chumbo and Theron, use range, and remember Misty Step (bonus action teleport) is your escape hatch. If someone grabs you, that's what Shield, Misty Step, and screaming for the paladin are for.</p>
+
+  <h3>Still open — talk to the DM</h3>
+  <p>Your <b>name</b>, your look, and your story: which noble house? Do they know about the shadow thing? Why are you doing heists instead of attending balls? Bring ideas to the table — or discover the answers mid-game. Both work.</p>
+</section>
+
+<section class="panel" id="p-play">
+  <div class="charhead">
+    <h2 class="charname">Melli's Sorcerer</h2>
+    <p class="charsub">Tiefling · Sorcerer 5 (Shadow Magic) · Noble</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>14*</b><span>AC (Mage Armor)</span></div>
+    <div class="stat"><b>32</b><span>HP</span></div>
+    <div class="stat"><b>30 ft</b><span>Speed</span></div>
+    <div class="stat"><b>+1</b><span>Init</span></div>
+    <div class="stat"><b>15</b><span>Spell DC</span></div>
+    <div class="stat"><b>+7</b><span>Spell Atk</span></div>
+    <div class="stat"><b>5</b><span>Sorcery Pts</span></div>
+    <div class="stat"><b>120 ft</b><span>Darkvision</span></div>
+  </div>
+  <div class="card">
+    <div class="budget">
+      <div class="row"><span class="tok m">MOVE</span><span class="desc"><b>30 ft</b> — split it up around your action however you like</span></div>
+      <div class="row"><span class="tok a">ACTION</span><span class="desc">one per turn — cast a spell, Dash, Dodge, Help, Hide…</span></div>
+      <div class="row"><span class="tok b">BONUS</span><span class="desc">one per turn, <b>only</b> if an ability grants one (marked green below)</span></div>
+      <div class="row"><span class="tok f">FREE</span><span class="desc">interact with one object (draw dagger, open door, drop torch)</span></div>
+      <div class="row"><span class="tok r">REACTION</span><span class="desc">one per <b>round</b>, usually off-turn (marked violet — Shield lives here!)</span></div>
+    </div>
+  </div>
+
+  <div class="lost">
+    <h3>Totally lost? One of these is always fine:</h3>
+    <ol>
+      <li><span class="chip a">ACTION</span> <b>Sorcerous Burst</b> or <b>Force Blast</b> at the scariest enemy (+7, 2d8). Cantrips are free — spam away.</li>
+      <li>Big group of enemies? <span class="chip a">ACTION</span> <b>Fireball</b>. Say "Careful Spell" first (1 SP) to protect up to 4 friends in the blast.</li>
+      <li>In trouble? <span class="chip b">BONUS</span> <b>Misty Step</b> away, then Dodge — or drop <b>Darkness</b> on yourself (2 SP) and walk out; only you can see in it.</li>
+    </ol>
+    <p class="warnbox">⚠ Cast <b>Mage Armor</b> every morning (AC 11 → 14, lasts 8 h). ⚠ <b>Shield</b> is a reaction — shout it when something is about to hit you, before damage is rolled.</p>
+  </div>
+
+  <h3 class="sec">Sorcery Points &amp; Metamagic ✦</h3>
+  <div class="rows">
+    <div class="row2 b"><div class="nm">Innate Sorcery <small>2 / long rest · 1 min</small></div><div class="fx">Your magic boils over: <b>+1 spell save DC</b> (16!) and <b>advantage on spell attack rolls</b>. Switch on before a big fight.</div></div>
+    <div class="row2 p"><div class="nm">Careful Spell <small>1 SP</small></div><div class="fx">Your save-spell (e.g. Fireball) — pick up to 4 creatures who <b>auto-succeed and take zero damage</b>. Friendly-fire insurance.</div></div>
+    <div class="row2 p"><div class="nm">Twinned Spell <small>1 SP</small></div><div class="fx">A spell that can upcast for extra targets hits <b>one more target</b> (raises effective level by 1).</div></div>
+    <div class="row2 b"><div class="nm">Font of Magic: slots ⇄ points</div><div class="fx">Bonus action: <b>2 SP → 1st-level slot · 3 SP → 2nd · 5 SP → 3rd</b>. And free (no action): burn a slot → SP equal to its level. Emergency Fireball fabricator.</div></div>
+    <div class="row2 p"><div class="nm">Sorcerous Restoration <small>1 / long rest</small></div><div class="fx">Regain 2 SP on a short rest.</div></div>
+  </div>
+
+  <h3 class="sec">Shadow powers 🌑</h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Darkness — your version <small>2 SP · <span class="chip c">C</span> 10 min</small></div><div class="fx">15-ft sphere of magical darkness that <b>you alone can see through</b> (only when paid with SP, not a slot). Blind a fight; you and Mako keep aiming.</div></div>
+    <div class="row2 p"><div class="nm">Strength of the Grave <small>1 / long rest</small></div><div class="fx">Dropped to 0 HP (not radiant, not a crit)? CHA save DC 5 + damage taken → stay at <b>1 HP</b>.</div></div>
+    <div class="row2 p"><div class="nm">Eyes of the Dark</div><div class="fx">Darkvision 120 ft.</div></div>
+    <div class="row2 r"><div class="nm">Hellish Rebuke <small>1 / long rest · free</small></div><div class="fx">Reaction when damaged: DEX 15, <b>3d10 fire</b> back at them.</div></div>
+  </div>
+
+  <h3 class="sec">Spells <span class="slots">· 1st ○○○○ · 2nd ○○○ · 3rd ○○</span></h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Sorcerous Burst <small>cantrip · 120 ft</small></div><div class="fx">+7, <b>2d8</b> of acid/cold/fire/lightning/poison/psychic/thunder — your choice each cast. Roll an 8? Roll a bonus d8 (max 4 extra).</div></div>
+    <div class="row2 a"><div class="nm">Force Blast <small>cantrip · 180 ft!</small></div><div class="fx">+7, <b>2d8 force</b>. Your sniper cantrip — almost nothing resists force. <small>(Exploring Eberron homebrew — full text is right here, no lookup needed.)</small></div></div>
+    <div class="row2 a"><div class="nm">Magic Missile <small>1st · 120 ft</small></div><div class="fx"><b>3 darts, auto-hit</b>, 1d4+1 each. No roll, no save, no miss.</div></div>
+    <div class="row2 r"><div class="nm">Shield <small>1st</small></div><div class="fx">Reaction when hit: <b>+5 AC until your next turn</b> (often turns the hit into a miss). Also blocks Magic Missile.</div></div>
+    <div class="row2 a"><div class="nm">Mage Armor <small>1st · 8 h</small></div><div class="fx">AC becomes <b>14</b>. Morning routine.</div></div>
+    <div class="row2 b"><div class="nm">Misty Step <small>2nd</small></div><div class="fx">Teleport 30 ft. Bonus action. Escape hatch.</div></div>
+    <div class="row2 a"><div class="nm">Shatter <small>2nd · 60 ft</small></div><div class="fx">10-ft sphere, CON save, <b>3d8 thunder</b>. LOUD — heard far away. Extra damage to objects and constructs.</div></div>
+    <div class="row2 a"><div class="nm">Maximilian's Earthen Grasp <small>2nd · 30 ft · <span class="chip c">C</span></small></div><div class="fx">Earth hand grabs someone: STR save or <b>2d6 + Restrained</b>. Squeeze again each turn (action).</div></div>
+    <div class="row2 a"><div class="nm">Enlarge/Reduce <small>2nd · <span class="chip c">C</span> 1 min</small></div><div class="fx">Make Chumbo HUGE (+1d4 weapon damage, advantage on STR) or shrink an enemy/object.</div></div>
+    <div class="row2 a"><div class="nm">Fireball <small>3rd · 150 ft</small></div><div class="fx">20-ft sphere, DEX 15, <b>8d6 fire</b>. The big red button. Combine with Careful Spell.</div></div>
+    <div class="row2 a"><div class="nm">Melf's Minute Meteors <small>3rd · <span class="chip c">C</span> 10 min</small></div><div class="fx"><b>6 tiny meteors</b> orbit you. Fling 2 when cast, then <b>2 per turn as a bonus action</b>: 5-ft burst, DEX save, 2d6 fire each. Damage every round without spending your action.</div></div>
+  </div>
+  <div class="hint"><b>Cantrip utility belt:</b> Prestidigitation (any small magical effect), Mage Hand (invisible hand, 30 ft), Message (silent whisper 120 ft — heist radio), Thaumaturgy (booming voice, flickering lights — drama).</div>
+
+  <h3 class="sec">Weapons (emergencies only)</h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Dagger <small>+4 · thrown 20/60</small></div><div class="fx">1d4+1 piercing. You have two. You'd rather not.</div></div>
+  </div>
+
+  <h3 class="sec">Magic items</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">None yet</div><div class="fx">The DM hands these out at session start — space reserved.</div></div>
+  </div>
+</section>
+
+<section class="panel" id="p-stats">
+  <div class="charhead">
+    <h2 class="charname">Stats &amp; Gear</h2>
+    <p class="charsub">Tiefling · Sorcerer 5 (Shadow Magic) · Noble</p>
+  </div>
+  <h3 class="sec">Abilities &amp; saving throws</h3>
+  <div class="abil">
+    <div class="a"><span>STR</span><b>10</b> (+0)<span class="sv">save +0</span></div>
+    <div class="a"><span>DEX</span><b>12</b> (+1)<span class="sv">save +1</span></div>
+    <div class="a pf"><span>CON</span><b>15</b> (+2)<span class="sv">save +5</span></div>
+    <div class="a"><span>INT</span><b>12</b> (+1)<span class="sv">save +1</span></div>
+    <div class="a"><span>WIS</span><b>10</b> (+0)<span class="sv">save +0</span></div>
+    <div class="a pf"><span>CHA</span><b>18</b> (+4)<span class="sv">save +7</span></div>
+  </div>
+  <h3 class="sec">Skills</h3>
+  <div class="skills">
+    <div class="sk"><span>Acrobatics</span><b>+1</b></div>
+    <div class="sk"><span>Animal Handling</span><b>+0</b></div>
+    <div class="sk pf"><span>Arcana</span><b>+4</b></div>
+    <div class="sk"><span>Athletics</span><b>+0</b></div>
+    <div class="sk"><span>Deception</span><b>+4</b></div>
+    <div class="sk pf"><span>History</span><b>+4</b></div>
+    <div class="sk pf"><span>Insight</span><b>+3</b></div>
+    <div class="sk"><span>Intimidation</span><b>+4</b></div>
+    <div class="sk"><span>Investigation</span><b>+1</b></div>
+    <div class="sk"><span>Medicine</span><b>+0</b></div>
+    <div class="sk"><span>Nature</span><b>+1</b></div>
+    <div class="sk"><span>Perception</span><b>+0</b></div>
+    <div class="sk"><span>Performance</span><b>+4</b></div>
+    <div class="sk pf"><span>Persuasion</span><b>+7</b></div>
+    <div class="sk"><span>Religion</span><b>+1</b></div>
+    <div class="sk"><span>Sleight of Hand</span><b>+1</b></div>
+    <div class="sk"><span>Stealth</span><b>+1</b></div>
+    <div class="sk"><span>Survival</span><b>+3</b></div>
+  </div>
+  <p class="legend">bright = proficient</p>
+  <h3 class="sec">Senses &amp; defenses</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Passives</div><div class="fx">Perception 10 · Insight 13 · Investigation 11 · <b>Darkvision 120 ft</b></div></div>
+    <div class="row2 p"><div class="nm">Resistance</div><div class="fx">Fire (half damage, always) — Hellish Resistance.</div></div>
+    <div class="row2 p"><div class="nm">Hit dice</div><div class="fx">5d6 — spend on short rests to heal.</div></div>
+  </div>
+  <h3 class="sec">Proficiencies &amp; languages</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Weapons</div><div class="fx">Simple weapons.</div></div>
+    <div class="row2 p"><div class="nm">Tools</div><div class="fx">Dragonchess set.</div></div>
+    <div class="row2 p"><div class="nm">Languages</div><div class="fx">Common, Elvish, Infernal.</div></div>
+  </div>
+  <h3 class="sec">Species traits (Tiefling)</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Infernal Legacy</div><div class="fx">Thaumaturgy cantrip · Hellish Rebuke 1/LR (at 2nd level) · Darkness 1/LR — all free, CHA-based.</div></div>
+    <div class="row2 p"><div class="nm">Hellish Resistance</div><div class="fx">Fire resistance.</div></div>
+  </div>
+  <h3 class="sec">Equipment <span class="slots">· 53 gp</span></h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Worn / carried</div><div class="fx">Fine clothes, <b>signet ring</b> (your house!), crystal (spellcasting focus), 2 daggers, spear.</div></div>
+    <div class="row2 p"><div class="nm">Backpack</div><div class="fx">Rope, crowbar, caltrops ×20, oil ×2, torches ×10, tinderbox, rations ×10, waterskin.</div></div>
+  </div>
+</section>
+
+<footer>Golden Vault crew · numbers from the 5etools dataset (2024 rules) · tell the DM if something looks off</footer>
+</div>
+<script>
+(function(){
+  var S = "https://5e.tools/spells.html#", I = "https://5e.tools/items.html#";
+  var LINKS = {
+    "Eldritch Blast": S+"eldritch%20blast_xphb", "Fireball": S+"fireball_xphb",
+    "Hypnotic Pattern": S+"hypnotic%20pattern_xphb", "Counterspell": S+"counterspell_xphb",
+    "Scorching Ray": S+"scorching%20ray_xphb", "Misty Step": S+"misty%20step_xphb",
+    "Hex": S+"hex_xphb", "Darkness": S+"darkness_xphb", "Hellish Rebuke": S+"hellish%20rebuke_xphb",
+    "Find Familiar [R]": S+"find%20familiar_xphb", "Detect Magic [R]": S+"detect%20magic_xphb",
+    "Speak with Animals [R]": S+"speak%20with%20animals_xphb",
+    "Guiding Bolt": S+"guiding%20bolt_xphb", "Command": S+"command_xphb",
+    "Searing Smite": S+"searing%20smite_xphb", "Heroism": S+"heroism_xphb",
+    "Divine Favor": S+"divine%20favor_xphb", "Lesser Restoration": S+"lesser%20restoration_xphb",
+    "Find Steed": S+"find%20steed_xphb", "Enhance Ability / Magic Weapon": S+"enhance%20ability_xphb",
+    "Divine Smite": S+"divine%20smite_xphb",
+    "Magic Missile": S+"magic%20missile_xphb", "Shield": S+"shield_xphb",
+    "Mage Armor": S+"mage%20armor_xphb", "Shatter": S+"shatter_xphb",
+    "Enlarge/Reduce": S+"enlarge%2freduce_xphb",
+    "Maximilian's Earthen Grasp": S+"maximilian's%20earthen%20grasp_xge",
+    "Melf's Minute Meteors": S+"melf's%20minute%20meteors_xge",
+    "Sorcerous Burst": S+"sorcerous%20burst_xphb", "Mage Hand": S+"mage%20hand_xphb",
+    "Message": S+"message_xphb", "Prestidigitation": S+"prestidigitation_xphb",
+    "Thaumaturgy": S+"thaumaturgy_xphb",
+    "Hat of Disguise": I+"hat%20of%20disguise_xdmg", "Immovable Rod": I+"immovable%20rod_xdmg",
+    "Javelin of Lightning": I+"javelin%20of%20lightning_xdmg", "Dread Helm": I+"dread%20helm_xdmg",
+    "Horn of Silent Alarm": I+"horn%20of%20silent%20alarm_xdmg", "Armor of Gleaming": I+"armor%20of%20gleaming_xdmg",
+    "Cloak of the Mountebank": I+"cape%20of%20the%20mountebank_xdmg"
+  };
+  document.querySelectorAll('.row2 .nm').forEach(function(nm){
+    var txt = nm.firstChild;
+    if (!txt || txt.nodeType !== 3) return;
+    var key = txt.textContent.trim();
+    var url = LINKS[key];
+    if (!url) return;
+    var a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    a.textContent = key;
+    nm.replaceChild(a, txt);
+    nm.insertBefore(document.createTextNode(' '), a.nextSibling);
+  });
+  var panels = Array.from(document.querySelectorAll('section.panel'));
+  var subnav = document.querySelector('nav.sub');
+  if (subnav && panels.length){
+    var key = 'gv-tab-' + location.pathname.split('/').pop();
+    function sel(id){
+      panels.forEach(function(p){ p.classList.toggle('active', p.id === id); });
+      subnav.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-selected', String(b.dataset.for === id)); });
+      try{ localStorage.setItem(key, id); }catch(e){}
+      window.scrollTo({top:0});
+    }
+    subnav.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){ sel(b.dataset.for); });
+    });
+    var start = null;
+    try{ start = localStorage.getItem(key); }catch(e){}
+    if (!start || !document.getElementById(start)) start = panels[0].id;
+    sel(start);
+  }
+})();
+</script>
+</body>
+</html>

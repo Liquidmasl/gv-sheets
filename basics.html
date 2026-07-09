@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
-<title>Golden Vault — Crew</title>
+<title>Golden Vault — Rules Basics</title>
 <style>
 :root{
   --bg:#191512; --card:#221c17; --card2:#2a231d; --line:#3a322a;
@@ -138,23 +138,86 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
 </head>
 <body>
 <header class="site">
-  <a href="index.html">🗝️ Golden Vault</a><span class="pg">crew</span>
+  <a href="index.html">🗝️ Golden Vault</a><span class="pg">rules basics</span>
   <span class="basics"><a href="basics.html">rules basics ↗</a></span>
 </header>
 
 <div class="wrap">
-<div class="charhead">
-  <h2 class="charname">The Crew</h2>
-  <p class="charsub">Level 5 · pick your character and <b>bookmark your page</b> — in the heat of the moment you only ever see your own sheet.</p>
-</div>
-<div class="crew">
-  <a href="mako.html"><span class="cn">Mako 🔥</span><br><span class="cc">Tiefling Warlock — shadows, fire, and a hat full of faces</span></a>
-  <a href="chumbo.html"><span class="cn">Chumbo 🪓</span><br><span class="cc">Goliath Barbarian — gladiator with wild magic in his veins</span></a>
-  <a href="theron.html"><span class="cn">Theron ⚔️</span><br><span class="cc">Dragonborn Paladin — the Lord Commander, dual-wielding drama</span></a>
-  <a href="melli.html"><span class="cn">Melli's Sorcerer 🌑</span><br><span class="cc">Tiefling Shadow Sorcerer — noble blood, darker gifts (name TBD)</span></a>
-  <a href="niki.html"><span class="cn">Niki's Monk 🐈</span><br><span class="cc">Tabaxi Monk — cat burglar, fists faster than thought (name TBD)</span></a>
-</div>
-<div class="hint" style="margin-top:1.4rem">New to D&amp;D? Read the <a href="basics.html" style="color:var(--gold)">rules basics</a> first — it's two minutes and covers everything you need to sit down and play.</div>
+
+  <div class="charhead">
+    <h2 class="charname">How D&amp;D Works</h2>
+    <p class="charsub">The two-minute version — everything else you can ask at the table</p>
+  </div>
+
+  <div class="card">
+    <p style="margin:.1rem 0 .5rem; font-size:.9rem"><b>The golden rule:</b> you don't need to know rules. Say what your character <i>tries</i> — "I want to sneak past the guard", "I check the desk for hidden drawers", "I lie to his face" — and the DM tells you what to roll. The rules find <i>you</i>.</p>
+  </div>
+
+  <h3 class="sec">The three rolls (it's always a d20)</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Ability check</div><div class="fx">Can you do a <i>thing</i>? Roll d20 + skill (your sheet's numbers) vs a difficulty the DM sets. Climbing, lying, spotting, remembering.</div></div>
+    <div class="row2 p"><div class="nm">Attack roll</div><div class="fx">Do you <i>hit</i>? Roll d20 + attack bonus vs the target's Armor Class (AC). Hit → roll damage.</div></div>
+    <div class="row2 p"><div class="nm">Saving throw</div><div class="fx">Can you <i>resist</i>? Something bad targets you, you roll d20 + save vs the effect's DC. Dodge the fireball, resist the charm.</div></div>
+  </div>
+  <div class="hint"><b>Advantage / Disadvantage:</b> roll TWO d20s, take the better / worse one. That's the whole mechanic. A natural 20 on an attack is a <b>crit</b>: double the damage dice.</div>
+
+  <h3 class="sec">Two modes of play</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Free play <small>most of the session</small></div><div class="fx">Exploring, talking, scheming — no turns, no order. Just talk; jump in whenever. Time flows however the story needs.</div></div>
+    <div class="row2 p"><div class="nm">Combat <small>when swords come out</small></div><div class="fx">Time freezes into <b>rounds</b> (~6 seconds each). Everyone rolls <b>initiative</b> (d20 + your Init) once; you act in that order every round until the fight ends. On your turn: your budget below. Off your turn: you can still use a <span class="chip r">REACTION</span>.</div></div>
+  </div>
+
+  <h3 class="sec">Your turn — a budget, not a script</h3>
+  <div class="card">
+    <div class="budget">
+      <div class="row"><span class="tok m">MOVE</span><span class="desc">your speed in feet — split it freely: move, attack, keep moving</span></div>
+      <div class="row"><span class="tok a">ACTION</span><span class="desc">your ONE big thing: <b>Attack</b>, <b>cast a spell</b>, Dash (double move), Dodge (hard to hit), Help, Hide, Utilize an object</span></div>
+      <div class="row"><span class="tok b">BONUS</span><span class="desc">ONE small extra — but <b>only if an ability specifically grants one</b> (they're marked green on your sheet). No green ability, no bonus action.</span></div>
+      <div class="row"><span class="tok f">FREE</span><span class="desc">interact with one object on the way: draw a weapon, open a door, drop the torch</span></div>
+      <div class="row"><span class="tok r">REACTION</span><span class="desc">ONE per round, usually on OTHER people's turns — an enemy walks away from you (free swipe!), or an ability marked violet triggers</span></div>
+    </div>
+  </div>
+  <div class="hint"><b>Example turn:</b> move 15 ft to the goon (MOVE), attack him (ACTION), Healing Word the fallen friend (BONUS — a green ability), kick a chair into the doorway (FREE). Later, on the goon's turn, he runs past Theron — Theron uses his REACTION to hit him.</div>
+
+  <h3 class="sec">Spellcasting in 30 seconds</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Spell slots</div><div class="fx">Casting a leveled spell spends a <b>slot</b> of that level or higher (higher often = stronger). Slots refill on a long rest. <b>Cantrips are free, always.</b></div></div>
+    <div class="row2 p"><div class="nm">Concentration <span class="chip c">C</span></div><div class="fx">Some spells stay active only while you concentrate. <b>Only one at a time</b> — casting a second C-spell drops the first. Taking damage → CON save (DC 10 or half the damage) or it drops.</div></div>
+    <div class="row2 p"><div class="nm">Rituals [R]</div><div class="fx">Cast without a slot if you take 10 extra minutes. Great outside combat.</div></div>
+  </div>
+
+  <h3 class="sec">Getting hurt</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">0 HP</div><div class="fx">You fall <b>Unconscious</b> — not dead. On your turns you roll <b>death saves</b> (plain d20): 10+ is a success. Three successes = stable; three fails = dead. A nat 20 = wake up with 1 HP; a nat 1 = two fails.</div></div>
+    <div class="row2 p"><div class="nm">Healing</div><div class="fx">ANY healing (even 1 HP) wakes you up. This is why Gimli and Laurald scream "stay in range!"</div></div>
+    <div class="row2 p"><div class="nm">Resting</div><div class="fx"><b>Short rest</b> (1 h): spend Hit Dice to heal; some abilities recharge. <b>Long rest</b> (8 h): everything back — HP, slots, the works.</div></div>
+  </div>
+
+  <details>
+    <summary>Conditions you'll hear (what they actually mean)</summary>
+    <div class="inner tablewrap"><table>
+      <tr><td>Prone</td><td>On the ground. Melee attacks vs you have advantage, ranged disadvantage. Half your movement to stand up.</td></tr>
+      <tr><td>Grappled</td><td>Held — speed 0. Escape: action, Athletics or Acrobatics check.</td></tr>
+      <tr><td>Restrained</td><td>Tied/webbed: can't move, attacks vs you advantage, yours disadvantage, DEX saves disadvantage.</td></tr>
+      <tr><td>Frightened</td><td>Disadvantage on everything while you see the source; can't move closer to it.</td></tr>
+      <tr><td>Charmed</td><td>Can't attack the charmer; they have social advantage on you.</td></tr>
+      <tr><td>Blinded</td><td>Attacks vs you advantage, yours disadvantage, auto-fail sight checks.</td></tr>
+      <tr><td>Invisible</td><td>Reverse of blinded: you attack with advantage, enemies at disadvantage.</td></tr>
+      <tr><td>Incapacitated</td><td>No actions, no reactions. Paralyzed/Stunned/Unconscious include this and get worse from there (paralyzed: melee hits auto-crit!).</td></tr>
+      <tr><td>Difficult terrain</td><td>Rubble, steam pipes, lava crust: every foot costs two.</td></tr>
+    </table></div>
+  </details>
+
+  <div class="lost">
+    <h3>New-player survival tips</h3>
+    <ol>
+      <li>Plan your turn while others take theirs — combat stays snappy.</li>
+      <li>You can always just <b>Attack</b> or <b>Dodge</b>. Nobody optimizes at level 5.</li>
+      <li>Describe the <i>attempt</i>, not the rule. "I slide the flask off the desk into my sleeve" beats "can I roll Sleight of Hand?"</li>
+      <li>Rule of Cool is real: creative and dramatic beats optimal at this table.</li>
+      <li>Tap any <a href="https://5e.tools/spells.html#vicious%20mockery_xphb" target="_blank" rel="noopener" style="color:inherit">underlined name↗</a> on your character sheet for the full official text on 5e.tools.</li>
+    </ol>
+  </div>
 
 <footer>Golden Vault crew · numbers from the 5etools dataset (2024 rules) · tell the DM if something looks off</footer>
 </div>

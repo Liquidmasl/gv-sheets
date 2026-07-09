@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Niki — Tabaxi Monk</title>
+<style>
+:root{
+  --bg:#191512; --card:#221c17; --card2:#2a231d; --line:#3a322a;
+  --ink:#e9e1d3; --ink-dim:#a89e8e; --ink-faint:#7a7264;
+  --gold:#c9a227;
+  --act:#d97b3f; --bon:#43a48d; --rea:#a184d9; --pas:#8a8378;
+  --act-bg:rgba(217,123,63,.14); --bon-bg:rgba(67,164,141,.14); --rea-bg:rgba(161,132,217,.16); --pas-bg:rgba(138,131,120,.14);
+  --warn:#d9a73f;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#f0eee9; --card:#ffffff; --card2:#f7f5f0; --line:#ddd8cf;
+    --ink:#26211c; --ink-dim:#6b6355; --ink-faint:#98907f;
+    --gold:#a07f14;
+    --act:#b35a22; --bon:#1e7f6a; --rea:#7757b8; --pas:#7c7466;
+    --act-bg:rgba(179,90,34,.10); --bon-bg:rgba(30,127,106,.10); --rea-bg:rgba(119,87,184,.11); --pas-bg:rgba(124,116,102,.12);
+    --warn:#a5761a;
+  }
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font:16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:28rem; margin:0 auto; padding:0 .8rem 4rem}
+h1,h2,h3,.charname{font-family:"Iowan Old Style", Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif}
+/* site header */
+header.site{position:sticky; top:0; z-index:30; background:var(--bg); border-bottom:1px solid var(--line);
+  display:flex; align-items:center; gap:.6rem; padding:.55rem .9rem; font-size:.85rem}
+header.site a{color:var(--gold); text-decoration:none; font-weight:700}
+header.site .pg{color:var(--ink-dim)}
+header.site .basics{margin-left:auto}
+header.site .basics a{color:var(--ink-faint); font-weight:400; font-size:.78rem}
+/* subnav tabs (per-page) */
+nav.sub{position:sticky; top:2.3rem; z-index:25; background:var(--bg); display:flex; gap:.4rem;
+  padding:.5rem .9rem; border-bottom:1px solid var(--line)}
+nav.sub button{flex:1; border:1px solid var(--line); background:var(--card); color:var(--ink-dim);
+  border-radius:999px; padding:.42rem .6rem; font:600 .85rem/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; cursor:pointer}
+nav.sub button[aria-selected="true"]{color:var(--ink); border-color:var(--gold); box-shadow:inset 0 -2px 0 var(--gold)}
+nav.sub button:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+section.panel{display:none}
+section.panel.active{display:block}
+@media (prefers-reduced-motion: no-preference){
+  section.panel.active{animation:fade .18s ease}
+  @keyframes fade{from{opacity:.4}to{opacity:1}}
+}
+/* character header */
+.charhead{padding:1rem .2rem .1rem}
+.charname{margin:0; font-size:1.55rem; line-height:1.15; text-wrap:balance}
+.charsub{margin:.15rem 0 0; color:var(--ink-dim); font-size:.86rem}
+/* cards & stats */
+.card{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:.85rem .9rem; margin:.8rem 0}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:.45rem; margin:.75rem 0}
+.stat{background:var(--card); border:1px solid var(--line); border-radius:8px; text-align:center; padding:.45rem .2rem}
+.stat b{display:block; font-size:1.15rem; font-variant-numeric:tabular-nums}
+.stat span{font-size:.62rem; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-faint)}
+/* chips */
+.chip{display:inline-block; font-size:.64rem; font-weight:700; letter-spacing:.05em; border-radius:4px; padding:.1rem .4rem .12rem; vertical-align:1px; white-space:nowrap}
+.chip.a{color:var(--act); background:var(--act-bg)}
+.chip.b{color:var(--bon); background:var(--bon-bg)}
+.chip.r{color:var(--rea); background:var(--rea-bg)}
+.chip.p{color:var(--pas); background:var(--pas-bg)}
+.chip.c{color:var(--warn); background:transparent; border:1px solid var(--warn); font-weight:600}
+/* turn budget */
+.budget{display:flex; flex-direction:column; gap:.45rem}
+.budget .row{display:flex; gap:.6rem; align-items:baseline}
+.budget .tok{flex:0 0 5.2rem; text-align:right; font-weight:700; font-size:.78rem; letter-spacing:.04em}
+.budget .tok.a{color:var(--act)} .budget .tok.b{color:var(--bon)} .budget .tok.r{color:var(--rea)} .budget .tok.m{color:var(--gold)} .budget .tok.f{color:var(--pas)}
+.budget .desc{color:var(--ink-dim); font-size:.85rem}
+.budget .desc b{color:var(--ink); font-weight:600}
+/* ability / spell rows */
+.rows{display:flex; flex-direction:column; gap:.55rem; margin:.2rem 0 0}
+.row2{border-left:3px solid var(--line); padding:.05rem 0 .05rem .55rem}
+.row2.a{border-color:var(--act)} .row2.b{border-color:var(--bon)} .row2.r{border-color:var(--rea)} .row2.p{border-color:var(--pas)}
+.row2 .nm{font-weight:650; font-size:.92rem}
+.row2 .nm small{font-weight:400; color:var(--ink-faint)}
+.row2 .nm a{color:inherit; text-decoration:underline dotted; text-decoration-color:var(--ink-faint); text-underline-offset:3px}
+.row2 .nm a::after{content:"↗"; font-size:.6em; color:var(--ink-faint); margin-left:.2em; vertical-align:super}
+.row2 .nm a:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+.row2 .fx{color:var(--ink-dim); font-size:.84rem; margin-top:.05rem}
+.row2 .fx b{color:var(--ink); font-weight:600}
+h3.sec{font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin:1.15rem 0 .35rem}
+.slots{color:var(--ink-faint); font-size:.8rem; letter-spacing:.12em}
+/* abilities & skills */
+.abil{display:grid; grid-template-columns:repeat(3,1fr); gap:.4rem}
+.abil .a{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:.35rem .2rem; text-align:center}
+.abil .a span{display:block; font-size:.6rem; letter-spacing:.08em; color:var(--ink-faint)}
+.abil .a b{font-size:1rem; font-variant-numeric:tabular-nums}
+.abil .a .sv{display:block; font-size:.68rem; color:var(--ink-dim); font-variant-numeric:tabular-nums}
+.abil .a.pf .sv{color:var(--gold); font-weight:700}
+.skills{display:grid; grid-template-columns:1fr 1fr; gap:.1rem .9rem; margin-top:.6rem}
+.skills .sk{display:flex; justify-content:space-between; gap:.4rem; border-bottom:1px dashed var(--line); padding:.14rem 0; font-size:.8rem; color:var(--ink-faint)}
+.skills .sk.pf{color:var(--ink)}
+.skills .sk.ex{color:var(--gold)}
+.skills .sk b{font-variant-numeric:tabular-nums; font-weight:650}
+.legend{font-size:.7rem; color:var(--ink-faint); margin:.5rem 0 0}
+/* details */
+details{border:1px solid var(--line); border-radius:8px; background:var(--card2); margin:.6rem 0}
+details summary{cursor:pointer; padding:.6rem .8rem; font-weight:600; font-size:.88rem; color:var(--ink-dim); list-style:none; display:flex; justify-content:space-between; align-items:center}
+details summary::after{content:"+"; color:var(--ink-faint); font-size:1rem}
+details[open] summary::after{content:"–"}
+details summary:focus-visible{outline:2px solid var(--gold); outline-offset:-2px}
+details .inner{padding:0 .8rem .75rem}
+/* misc */
+table{border-collapse:collapse; width:100%; font-size:.83rem}
+td,th{padding:.32rem .45rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top}
+th{font-size:.66rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); font-weight:600}
+td:first-child{white-space:nowrap; font-weight:600; font-variant-numeric:tabular-nums}
+.tablewrap{overflow-x:auto}
+.hint{background:var(--card2); border:1px dashed var(--line); border-radius:8px; padding:.7rem .8rem; font-size:.85rem; color:var(--ink-dim); margin:.8rem 0}
+.hint b{color:var(--ink)}
+.lost{border:1px solid var(--bon); border-radius:8px; padding:.8rem .9rem; margin:.8rem 0; background:var(--bon-bg)}
+.lost h3{margin:0 0 .4rem; font-size:.95rem}
+.lost ol{margin:.2rem 0 0; padding-left:1.15rem; font-size:.88rem}
+.lost li{margin:.35rem 0}
+.warnbox{font-size:.83rem; color:var(--warn); margin:.5rem 0 0}
+/* intro prose */
+.intro p{font-size:.92rem; line-height:1.55}
+.intro h3{font-size:1.05rem; margin:1.3rem 0 .3rem}
+.intro .flavor{border-left:3px solid var(--gold); background:var(--card); padding:.65rem .9rem; margin:.8rem 0; font-style:italic; font-size:.92rem; border-radius:0 6px 6px 0}
+/* index cards */
+.crew{display:flex; flex-direction:column; gap:.6rem; margin-top:1rem}
+.crew a{display:block; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:.8rem 1rem; color:var(--ink); text-decoration:none}
+.crew a:hover{border-color:var(--gold)}
+.crew .cn{font-weight:700; font-size:1.05rem; font-family:"Iowan Old Style", Palatino, Georgia, serif}
+.crew .cc{color:var(--ink-dim); font-size:.82rem}
+footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2.5rem}
+
+</style>
+</head>
+<body>
+<header class="site">
+  <a href="index.html">🗝️ Golden Vault</a><span class="pg">Niki's monk</span>
+  <span class="basics"><a href="basics.html">rules basics ↗</a></span>
+</header>
+<nav class="sub" role="tablist"><button role="tab" data-for="p-intro" aria-selected="false">Intro</button><button role="tab" data-for="p-play" aria-selected="false">Play</button><button role="tab" data-for="p-stats" aria-selected="false">Stats & Gear</button></nav>
+<div class="wrap">
+<section class="panel intro" id="p-intro">
+  <div class="charhead">
+    <h2 class="charname">Your Character</h2>
+    <p class="charsub">Tabaxi · Monk · Warrior of the Open Hand · Criminal (Spy) — <b>name still yours to choose!</b></p>
+  </div>
+  <div class="flavor">You are a tabaxi — cat-folk: fur, tail, retractable claws, and a curiosity that has gotten you into every locked room you ever met. Somewhere along the way you trained your body into a weapon and your patience into armor. Officially, that discipline made you a monk. Unofficially, it made you the best second-story burglar money could hire — which is exactly how you used to pay the bills. Old habits die hard. Lucky for this crew, they don't need them to.</div>
+
+  <h3>What is a Monk?</h3>
+  <p>Monks fight with their body and win with their speed. No armor, no sword — your <b>fists hit as hard as a longsword</b> (1d8+4) and you get more attacks per turn than anyone at the table. Mechanically you're the party's <b>skirmisher and scout</b>: fastest mover, hardest to pin down, first through every window.</p>
+  <p>Your special resource is <b>Focus Points</b> — 5 of them, and here's the beautiful part: <b>they come back on a short rest</b>. You can afford to spend them every fight. They fuel your flashiest moves.</p>
+
+  <h3>Your toolkit, in the order you'll use it</h3>
+  <p><b>Speed.</b> You move 40 ft per turn — and once per "stop", your <b>Feline Agility</b> doubles that. 80 ft in a turn, 160 with Dash. Nothing in this town outruns you.</p>
+  <p><b>Flurry of Blows</b> (1 Focus Point, bonus action): two extra punches — so with your Attack action that's <b>four attacks in one turn</b>. And your Open Hand training lets each Flurry hit do a dirty trick: <b>Topple</b> them (prone — your friends hit them easier), <b>Push</b> them 15 ft (off a bridge, into the magma channel, out of the fight), or <b>Addle</b> them (no opportunity attacks — grab an ally and walk away free).</p>
+  <p><b>Stunning Strike</b> (1 Focus Point, once per turn when you hit): CON save or the target is <b>Stunned</b> — it loses its turn and everyone hits it with advantage. This is the single scariest button a monk has. Even on a successful save its speed halves and the next attack has advantage.</p>
+  <p><b>Deflect Attacks</b> (reaction): someone hits you with a weapon — you <b>reduce the damage by 1d10+9</b>. Average 14 damage just… slapped aside. Reduce it to zero and you can spend a Focus Point to <b>throw the blow back</b> (2d8+4 to someone nearby). Yes, you can catch a crossbow bolt and return it.</p>
+  <p><b>Uncanny Metabolism</b> (1/day): when initiative is rolled you can refill ALL Focus Points and heal 1d8+5. Use it in the fight that matters.</p>
+
+  <h3>Out of a fight — this is your real kingdom</h3>
+  <p>You are the party's <b>eyes and fingers</b>: Stealth +7, Sleight of Hand +7, Acrobatics +7, Perception +6 (passive 16 — you notice <i>everything</i>), <b>Thieves' Tools</b> for locks and traps, a climbing speed, and Slow Fall (falling barely hurts you). Scout ahead, case the room, pick the lock, signal the crew. The heist runs through you.</p>
+
+  <h3>Your weaknesses (know them, plan around them)</h3>
+  <p>33 HP means you can't trade hits like Chumbo — your defense is <b>not being there</b>: Patient Defense (bonus action Disengage, or +Dodge for 1 FP) keeps you slippery. You have no ranged attack worth mentioning, so pick your entrances. And WIS-save monsters aside, your INT and CHA are ordinary — leave the talking to the nobles, you're the one on the roof.</p>
+
+  <h3>Still open — talk to the DM</h3>
+  <p>Your <b>name</b>, your look, your past: who did you spy for? Why did you stop — or did you? Also: <b>your backpack is literally empty</b> on the sheet — tell the DM what a professional cat burglar carries.</p>
+</section>
+
+<section class="panel" id="p-play">
+  <div class="charhead">
+    <h2 class="charname">Niki's Monk</h2>
+    <p class="charsub">Tabaxi · Monk 5 (Warrior of the Open Hand) · Criminal/Spy</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>17</b><span>AC</span></div>
+    <div class="stat"><b>33</b><span>HP</span></div>
+    <div class="stat"><b>40 ft</b><span>Speed</span></div>
+    <div class="stat"><b>+4</b><span>Init</span></div>
+    <div class="stat"><b>5</b><span>Focus Pts</span></div>
+    <div class="stat"><b>14</b><span>Focus DC</span></div>
+    <div class="stat"><b>2 (+2)</b><span>Attacks (+Flurry)</span></div>
+    <div class="stat"><b>16</b><span>Pass. Perc.</span></div>
+  </div>
+  <div class="card">
+    <div class="budget">
+      <div class="row"><span class="tok m">MOVE</span><span class="desc"><b>40 ft</b> (climb 30) — split it up around your attacks; Feline Agility doubles it once per stop</span></div>
+      <div class="row"><span class="tok a">ACTION</span><span class="desc">one per turn — Attack (×2!), Dash, Dodge, Help, Hide…</span></div>
+      <div class="row"><span class="tok b">BONUS</span><span class="desc">one per turn — you ALWAYS have one: free punch, Flurry, Patient Defense, or Step of the Wind</span></div>
+      <div class="row"><span class="tok f">FREE</span><span class="desc">interact with one object (palm a key, open a window…)</span></div>
+      <div class="row"><span class="tok r">REACTION</span><span class="desc">one per <b>round</b> — Deflect Attacks lives here!</span></div>
+    </div>
+  </div>
+
+  <div class="lost">
+    <h3>Totally lost? One of these is always fine:</h3>
+    <ol>
+      <li><span class="chip a">ACTION</span> Attack twice (+7, 1d8+4 each) → <span class="chip b">BONUS</span> <b>Flurry</b> (1 FP): two more punches, and <b>Topple</b> someone prone.</li>
+      <li>Something hits you? <span class="chip r">REACTION</span> <b>Deflect Attacks</b> — subtract 1d10+9 from the damage. Always. Every round.</li>
+      <li>Bad spot? <span class="chip b">BONUS</span> <b>Patient Defense</b> (free Disengage) and walk away — or Step of the Wind and be 80 ft away.</li>
+    </ol>
+    <p class="warnbox">⚠ Focus Points refill on a <b>short rest</b> — spend them freely, roughly one per round in a real fight.</p>
+  </div>
+
+  <h3 class="sec">Attacks <span class="slots">· 2 per Attack action · all DEX-based</span></h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Unarmed Strike / Claws <small>+7</small></div><div class="fx"><b>1d8+4</b> bludgeoning (or slashing with claws). Instead of damage: <b>Grapple or Shove</b> (DC 14, DEX-based).</div></div>
+    <div class="row2 a"><div class="nm">Stunning Strike <small>1 FP · once per turn, on a hit</small></div><div class="fx">CON save 14 or <b>Stunned until your next turn</b> (loses its turn, everyone hits it with advantage). Even on a save: speed halved + next attack vs it has advantage.</div></div>
+  </div>
+
+  <h3 class="sec">Bonus actions (you always have one!)</h3>
+  <div class="rows">
+    <div class="row2 b"><div class="nm">Martial Arts strike <small>free</small></div><div class="fx">One extra unarmed strike. Your baseline third attack.</div></div>
+    <div class="row2 b"><div class="nm">Flurry of Blows <small>1 FP</small></div><div class="fx"><b>Two</b> extra strikes — and each Flurry hit picks a rider: <b>Topple</b> (DEX 14 or prone) · <b>Push</b> (STR 14 or flies 15 ft) · <b>Addle</b> (no opportunity attacks from it).</div></div>
+    <div class="row2 b"><div class="nm">Patient Defense <small>free / 1 FP</small></div><div class="fx">Disengage as a bonus action — or spend 1 FP for <b>Disengage + Dodge</b> (attacks vs you at disadvantage).</div></div>
+    <div class="row2 b"><div class="nm">Step of the Wind <small>free / 1 FP</small></div><div class="fx">Dash as a bonus action — or 1 FP for <b>Dash + Disengage</b> and doubled jump. Combine with Feline Agility: 160 ft.</div></div>
+  </div>
+
+  <h3 class="sec">Reactions &amp; defense</h3>
+  <div class="rows">
+    <div class="row2 r"><div class="nm">Deflect Attacks</div><div class="fx">Hit by a weapon attack (B/P/S): reduce damage by <b>1d10+9</b>. If reduced to 0: spend 1 FP → someone within reach (5 ft melee / 60 ft ranged) makes DEX 14 or takes <b>2d8+4</b> of the same type. Catch the bolt, throw it back.</div></div>
+    <div class="row2 r"><div class="nm">Slow Fall</div><div class="fx">Reaction when falling: <b>−25 falling damage</b>. Rooftops are a suggestion.</div></div>
+    <div class="row2 p"><div class="nm">Uncanny Metabolism <small>1 / long rest</small></div><div class="fx">When initiative is rolled: <b>refill all Focus Points</b> + heal 1d8+5.</div></div>
+    <div class="row2 p"><div class="nm">Feline Agility <small>recharges when you don't move for a turn</small></div><div class="fx"><b>Double your speed</b> for the turn (80 ft).</div></div>
+  </div>
+
+  <h3 class="sec">Magic items</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">None yet</div><div class="fx">The DM hands these out at session start — space reserved.</div></div>
+  </div>
+</section>
+
+<section class="panel" id="p-stats">
+  <div class="charhead">
+    <h2 class="charname">Stats &amp; Gear</h2>
+    <p class="charsub">Tabaxi · Monk 5 (Warrior of the Open Hand) · Criminal/Spy</p>
+  </div>
+  <h3 class="sec">Abilities &amp; saving throws</h3>
+  <div class="abil">
+    <div class="a pf"><span>STR</span><b>10</b> (+0)<span class="sv">save +3</span></div>
+    <div class="a pf"><span>DEX</span><b>18</b> (+4)<span class="sv">save +7</span></div>
+    <div class="a"><span>CON</span><b>12</b> (+1)<span class="sv">save +1</span></div>
+    <div class="a"><span>INT</span><b>10</b> (+0)<span class="sv">save +0</span></div>
+    <div class="a"><span>WIS</span><b>16</b> (+3)<span class="sv">save +3</span></div>
+    <div class="a"><span>CHA</span><b>10</b> (+0)<span class="sv">save +0</span></div>
+  </div>
+  <h3 class="sec">Skills</h3>
+  <div class="skills">
+    <div class="sk pf"><span>Acrobatics</span><b>+7</b></div>
+    <div class="sk"><span>Animal Handling</span><b>+3</b></div>
+    <div class="sk"><span>Arcana</span><b>+0</b></div>
+    <div class="sk"><span>Athletics</span><b>+0</b></div>
+    <div class="sk pf"><span>Deception</span><b>+3</b></div>
+    <div class="sk"><span>History</span><b>+0</b></div>
+    <div class="sk pf"><span>Insight</span><b>+6</b></div>
+    <div class="sk"><span>Intimidation</span><b>+0</b></div>
+    <div class="sk"><span>Investigation</span><b>+0</b></div>
+    <div class="sk"><span>Medicine</span><b>+3</b></div>
+    <div class="sk"><span>Nature</span><b>+0</b></div>
+    <div class="sk pf"><span>Perception</span><b>+6</b></div>
+    <div class="sk"><span>Performance</span><b>+0</b></div>
+    <div class="sk"><span>Persuasion</span><b>+0</b></div>
+    <div class="sk"><span>Religion</span><b>+0</b></div>
+    <div class="sk pf"><span>Sleight of Hand</span><b>+7</b></div>
+    <div class="sk pf"><span>Stealth</span><b>+7</b></div>
+    <div class="sk"><span>Survival</span><b>+3</b></div>
+  </div>
+  <p class="legend">bright = proficient</p>
+  <h3 class="sec">Senses &amp; defenses</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Passives</div><div class="fx"><b>Perception 16</b> · Insight 16 · Investigation 10 · Darkvision 60 ft</div></div>
+    <div class="row2 p"><div class="nm">Unarmored Defense</div><div class="fx">AC 17 with no armor and no shield (don't put on armor — you'd lose everything).</div></div>
+    <div class="row2 p"><div class="nm">Hit dice</div><div class="fx">5d8 — spend on short rests to heal.</div></div>
+  </div>
+  <h3 class="sec">Proficiencies &amp; languages</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Weapons</div><div class="fx">Simple weapons, shortsword, scimitar, hand crossbow.</div></div>
+    <div class="row2 p"><div class="nm">Tools</div><div class="fx"><b>Thieves' Tools</b> (locks &amp; traps!), dice set, pan flute.</div></div>
+    <div class="row2 p"><div class="nm">Languages</div><div class="fx">Common, Goblin.</div></div>
+  </div>
+  <h3 class="sec">Species traits (Tabaxi)</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Cat's Claws</div><div class="fx">Climb speed (30 ft with monk bonus); claws deal slashing.</div></div>
+    <div class="row2 p"><div class="nm">Feline Agility</div><div class="fx">Double speed for a turn; recharges after a turn where you move 0 ft.</div></div>
+    <div class="row2 p"><div class="nm">Cat's Talent</div><div class="fx">Perception &amp; Stealth proficiency (included).</div></div>
+  </div>
+  <h3 class="sec">Equipment <span class="slots">· 0 gp</span></h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">⚠ Backpack not packed yet</div><div class="fx">The sheet is empty — tell the DM what a professional burglar carries. (Suggestions: rope, grappling hook, dark clothes, chalk, a sack for loot, and the thieves' tools you're proficient with.)</div></div>
+  </div>
+</section>
+
+<footer>Golden Vault crew · numbers from the 5etools dataset (2024 rules) · tell the DM if something looks off</footer>
+</div>
+<script>
+(function(){
+  var S = "https://5e.tools/spells.html#", I = "https://5e.tools/items.html#";
+  var LINKS = {
+    "Eldritch Blast": S+"eldritch%20blast_xphb", "Fireball": S+"fireball_xphb",
+    "Hypnotic Pattern": S+"hypnotic%20pattern_xphb", "Counterspell": S+"counterspell_xphb",
+    "Scorching Ray": S+"scorching%20ray_xphb", "Misty Step": S+"misty%20step_xphb",
+    "Hex": S+"hex_xphb", "Darkness": S+"darkness_xphb", "Hellish Rebuke": S+"hellish%20rebuke_xphb",
+    "Find Familiar [R]": S+"find%20familiar_xphb", "Detect Magic [R]": S+"detect%20magic_xphb",
+    "Speak with Animals [R]": S+"speak%20with%20animals_xphb",
+    "Guiding Bolt": S+"guiding%20bolt_xphb", "Command": S+"command_xphb",
+    "Searing Smite": S+"searing%20smite_xphb", "Heroism": S+"heroism_xphb",
+    "Divine Favor": S+"divine%20favor_xphb", "Lesser Restoration": S+"lesser%20restoration_xphb",
+    "Find Steed": S+"find%20steed_xphb", "Enhance Ability / Magic Weapon": S+"enhance%20ability_xphb",
+    "Divine Smite": S+"divine%20smite_xphb",
+    "Magic Missile": S+"magic%20missile_xphb", "Shield": S+"shield_xphb",
+    "Mage Armor": S+"mage%20armor_xphb", "Shatter": S+"shatter_xphb",
+    "Enlarge/Reduce": S+"enlarge%2freduce_xphb",
+    "Maximilian's Earthen Grasp": S+"maximilian's%20earthen%20grasp_xge",
+    "Melf's Minute Meteors": S+"melf's%20minute%20meteors_xge",
+    "Sorcerous Burst": S+"sorcerous%20burst_xphb", "Mage Hand": S+"mage%20hand_xphb",
+    "Message": S+"message_xphb", "Prestidigitation": S+"prestidigitation_xphb",
+    "Thaumaturgy": S+"thaumaturgy_xphb",
+    "Hat of Disguise": I+"hat%20of%20disguise_xdmg", "Immovable Rod": I+"immovable%20rod_xdmg",
+    "Javelin of Lightning": I+"javelin%20of%20lightning_xdmg", "Dread Helm": I+"dread%20helm_xdmg",
+    "Horn of Silent Alarm": I+"horn%20of%20silent%20alarm_xdmg", "Armor of Gleaming": I+"armor%20of%20gleaming_xdmg",
+    "Cloak of the Mountebank": I+"cape%20of%20the%20mountebank_xdmg"
+  };
+  document.querySelectorAll('.row2 .nm').forEach(function(nm){
+    var txt = nm.firstChild;
+    if (!txt || txt.nodeType !== 3) return;
+    var key = txt.textContent.trim();
+    var url = LINKS[key];
+    if (!url) return;
+    var a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    a.textContent = key;
+    nm.replaceChild(a, txt);
+    nm.insertBefore(document.createTextNode(' '), a.nextSibling);
+  });
+  var panels = Array.from(document.querySelectorAll('section.panel'));
+  var subnav = document.querySelector('nav.sub');
+  if (subnav && panels.length){
+    var key = 'gv-tab-' + location.pathname.split('/').pop();
+    function sel(id){
+      panels.forEach(function(p){ p.classList.toggle('active', p.id === id); });
+      subnav.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-selected', String(b.dataset.for === id)); });
+      try{ localStorage.setItem(key, id); }catch(e){}
+      window.scrollTo({top:0});
+    }
+    subnav.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){ sel(b.dataset.for); });
+    });
+    var start = null;
+    try{ start = localStorage.getItem(key); }catch(e){}
+    if (!start || !document.getElementById(start)) start = panels[0].id;
+    sel(start);
+  }
+})();
+</script>
+</body>
+</html>

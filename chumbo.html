@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
-<title>Golden Vault — Crew</title>
+<title>Chumbo — Barbarian</title>
 <style>
 :root{
   --bg:#191512; --card:#221c17; --card2:#2a231d; --line:#3a322a;
@@ -138,23 +138,130 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
 </head>
 <body>
 <header class="site">
-  <a href="index.html">🗝️ Golden Vault</a><span class="pg">crew</span>
+  <a href="index.html">🗝️ Golden Vault</a><span class="pg">Chumbo</span>
   <span class="basics"><a href="basics.html">rules basics ↗</a></span>
 </header>
-
+<nav class="sub" role="tablist"><button role="tab" data-for="p-play" aria-selected="false">Play</button><button role="tab" data-for="p-stats" aria-selected="false">Stats & Gear</button></nav>
 <div class="wrap">
-<div class="charhead">
-  <h2 class="charname">The Crew</h2>
-  <p class="charsub">Level 5 · pick your character and <b>bookmark your page</b> — in the heat of the moment you only ever see your own sheet.</p>
-</div>
-<div class="crew">
-  <a href="mako.html"><span class="cn">Mako 🔥</span><br><span class="cc">Tiefling Warlock — shadows, fire, and a hat full of faces</span></a>
-  <a href="chumbo.html"><span class="cn">Chumbo 🪓</span><br><span class="cc">Goliath Barbarian — gladiator with wild magic in his veins</span></a>
-  <a href="theron.html"><span class="cn">Theron ⚔️</span><br><span class="cc">Dragonborn Paladin — the Lord Commander, dual-wielding drama</span></a>
-  <a href="melli.html"><span class="cn">Melli's Sorcerer 🌑</span><br><span class="cc">Tiefling Shadow Sorcerer — noble blood, darker gifts (name TBD)</span></a>
-  <a href="niki.html"><span class="cn">Niki's Monk 🐈</span><br><span class="cc">Tabaxi Monk — cat burglar, fists faster than thought (name TBD)</span></a>
-</div>
-<div class="hint" style="margin-top:1.4rem">New to D&amp;D? Read the <a href="basics.html" style="color:var(--gold)">rules basics</a> first — it's two minutes and covers everything you need to sit down and play.</div>
+<section class="panel" id="p-play">
+  <div class="charhead">
+    <h2 class="charname">Chumbo</h2>
+    <p class="charsub">Goliath · Barbarian 5 · Path of Wild Magic · Gladiator</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>15</b><span>AC</span></div>
+    <div class="stat"><b>55</b><span>HP</span></div>
+    <div class="stat"><b>40 ft</b><span>Speed</span></div>
+    <div class="stat"><b>+2</b><span>Init</span></div>
+    <div class="stat"><b>+7</b><span>Attack</span></div>
+    <div class="stat"><b>2</b><span>Attacks</span></div>
+    <div class="stat"><b>3/LR</b><span>Rages</span></div>
+    <div class="stat"><b>12</b><span>Pass. Perc.</span></div>
+  </div>
+  <div class="card">
+    <div class="budget">
+      <div class="row"><span class="tok m">MOVE</span><span class="desc"><b>40 ft</b> — split it up around your action however you like</span></div>
+      <div class="row"><span class="tok a">ACTION</span><span class="desc">one per turn — Attack (×2!), Dash, Dodge, Help…</span></div>
+      <div class="row"><span class="tok b">BONUS</span><span class="desc">one per turn, <b>only</b> if an ability grants one (Rage!)</span></div>
+      <div class="row"><span class="tok f">FREE</span><span class="desc">interact with one object (draw the greataxe…)</span></div>
+      <div class="row"><span class="tok r">REACTION</span><span class="desc">one per <b>round</b> — Stone's Endurance lives here</span></div>
+    </div>
+  </div>
+  <div class="hint"><b>Default turn:</b> Bonus: RAGE (roll the wild magic!) → attack twice, Reckless if you want to hit hard. Keep Stone's Endurance ready for the first big hit you take.</div>
+
+  <h3 class="sec">Rage &amp; toughness</h3>
+  <div class="rows">
+    <div class="row2 b"><div class="nm">Rage <small>3 / long rest · 1 gets back on short rest</small></div><div class="fx"><b>+2 damage</b> on STR attacks · <b>half damage</b> from slashing/piercing/bludgeoning · advantage on STR checks &amp; saves. Stays up if you attack or take damage each round (max 10 min). No heavy armor. <b>Entering rage = roll on your Wild Magic table below!</b></div></div>
+    <div class="row2 p"><div class="nm">Reckless Attack</div><div class="fx">Declare on your first attack: <b>advantage on all your STR attacks</b> this turn — but attacks against you also have advantage until your next turn.</div></div>
+    <div class="row2 r"><div class="nm">Stone's Endurance <small>1 / short rest</small></div><div class="fx">Reaction when damaged: <b>reduce it by 1d12+3</b>.</div></div>
+    <div class="row2 p"><div class="nm">Danger Sense</div><div class="fx">Advantage on DEX saves (unless Incapacitated). Fireballs fear you.</div></div>
+    <div class="row2 p"><div class="nm">Primal Knowledge</div><div class="fx">While raging: Acrobatics, Intimidation, Perception, Stealth, Survival checks can use <b>STR (+7)</b>. Yes — angry sneaking.</div></div>
+    <div class="row2 a"><div class="nm">Magic Awareness <small>3 / long rest</small></div><div class="fx">Action: sense every spell and magic item within 60 ft (and its school) until your next turn ends. The wild magic in you sniffs out other magic.</div></div>
+  </div>
+  <details open>
+    <summary>Wild Magic surge (d8, roll when you Rage) — save DC 14</summary>
+    <div class="inner tablewrap"><table>
+      <tr><th>d8</th><th>What erupts from you</th></tr>
+      <tr><td>1</td><td><b>Shadow tendrils</b> — chosen creatures within 30 ft: CON save or 1d12 necrotic. You gain 1d12 temp HP.</td></tr>
+      <tr><td>2</td><td><b>Blink step</b> — teleport 30 ft now, and again every turn as a bonus action while raging.</td></tr>
+      <tr><td>3</td><td><b>Exploding spirit</b> — flumph or pixie (your call) appears next to an enemy, explodes end of turn: 5 ft, DEX save or 1d6 force. Again each turn as a bonus action.</td></tr>
+      <tr><td>4</td><td><b>Force weapon</b> — your weapon deals force damage, becomes light + thrown (20/60), and boomerangs back to your hand.</td></tr>
+      <tr><td>5</td><td><b>Retribution</b> — anyone who hits you takes 1d6 force. Automatically.</td></tr>
+      <tr><td>6</td><td><b>Rainbow ward</b> — +1 AC for you AND allies within 10 ft.</td></tr>
+      <tr><td>7</td><td><b>Flower field</b> — ground within 15 ft of you is difficult terrain for enemies. Very intimidating flowers.</td></tr>
+      <tr><td>8</td><td><b>Light bolt</b> — one creature within 30 ft: CON save or 1d6 radiant + blinded until your next turn. Again each turn as a bonus action.</td></tr>
+    </table></div>
+  </details>
+
+  <h3 class="sec">Attacks <span class="slots">· 2 per Attack action · +2 dmg while raging</span></h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Greataxe <small>+7</small></div><div class="fx"><b>1d12+4</b> slashing · <b>Cleave:</b> once/turn on a hit, free extra swing at a second enemy within 5 ft (1d12, no +4).</div></div>
+    <div class="row2 a"><div class="nm">Glaive <small>+7 · reach 10 ft</small></div><div class="fx"><b>1d10+4</b> slashing · <b>Graze:</b> even on a miss, deal 4 damage.</div></div>
+    <div class="row2 a"><div class="nm">Javelin <small>+7 · thrown 30/120</small></div><div class="fx">1d6+4 · <b>Slow:</b> hit reduces target speed by 10 ft.</div></div>
+    <div class="row2 a"><div class="nm">Javelin of Lightning <small>1 / dawn</small></div><div class="fx">Instead of an attack roll: <b>5-ft-wide lightning line</b> to a point within 120 ft — everyone in it: DEX 13, <b>4d6 lightning</b> (half on save). It flies back to your hand. <b>Friends in the line get zapped too.</b></div></div>
+  </div>
+
+  <h3 class="sec">Magic items</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Dread Helm</div><div class="fx">Your eyes glow red, your face is shadow. Purely cosmetic. Purely awesome. Intimidation theater.</div></div>
+  </div>
+</section>
+
+<section class="panel" id="p-stats">
+  <div class="charhead">
+    <h2 class="charname">Stats &amp; Gear</h2>
+    <p class="charsub">Goliath · Barbarian 5 (Path of Wild Magic) · Gladiator</p>
+  </div>
+  <h3 class="sec">Abilities &amp; saving throws</h3>
+  <div class="abil">
+    <div class="a pf"><span>STR</span><b>18</b> (+4)<span class="sv">save +7</span></div>
+    <div class="a"><span>DEX</span><b>14</b> (+2)<span class="sv">save +2</span></div>
+    <div class="a pf"><span>CON</span><b>16</b> (+3)<span class="sv">save +6</span></div>
+    <div class="a"><span>INT</span><b>10</b> (+0)<span class="sv">save +0</span></div>
+    <div class="a"><span>WIS</span><b>8</b> (−1)<span class="sv">save −1</span></div>
+    <div class="a"><span>CHA</span><b>10</b> (+0)<span class="sv">save +0</span></div>
+  </div>
+  <h3 class="sec">Skills</h3>
+  <div class="skills">
+    <div class="sk pf"><span>Acrobatics</span><b>+5</b></div>
+    <div class="sk"><span>Animal Handling</span><b>−1</b></div>
+    <div class="sk"><span>Arcana</span><b>+0</b></div>
+    <div class="sk pf"><span>Athletics</span><b>+7</b></div>
+    <div class="sk"><span>Deception</span><b>+0</b></div>
+    <div class="sk"><span>History</span><b>+0</b></div>
+    <div class="sk"><span>Insight</span><b>−1</b></div>
+    <div class="sk pf"><span>Intimidation</span><b>+3</b></div>
+    <div class="sk"><span>Investigation</span><b>+0</b></div>
+    <div class="sk"><span>Medicine</span><b>−1</b></div>
+    <div class="sk"><span>Nature</span><b>+0</b></div>
+    <div class="sk pf"><span>Perception</span><b>+2</b></div>
+    <div class="sk pf"><span>Performance</span><b>+3</b></div>
+    <div class="sk"><span>Persuasion</span><b>+0</b></div>
+    <div class="sk"><span>Religion</span><b>+0</b></div>
+    <div class="sk"><span>Sleight of Hand</span><b>+2</b></div>
+    <div class="sk"><span>Stealth</span><b>+2</b></div>
+    <div class="sk pf"><span>Survival</span><b>+2</b></div>
+  </div>
+  <p class="legend">bright = proficient · while raging: Acrobatics/Intimidation/Perception/Stealth/Survival may use STR (+7)</p>
+  <h3 class="sec">Senses &amp; defenses</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Passives</div><div class="fx">Perception 12 · Insight 9 (⚠ trust your friends' instincts) · Investigation 10</div></div>
+    <div class="row2 p"><div class="nm">Resistances</div><div class="fx">Cold (always) · slashing/piercing/bludgeoning while raging.</div></div>
+    <div class="row2 p"><div class="nm">Goliath build</div><div class="fx">Count as Large for carrying/pushing/lifting · no high-altitude penalties.</div></div>
+    <div class="row2 p"><div class="nm">Hit dice</div><div class="fx">5d12 — spend on short rests to heal.</div></div>
+  </div>
+  <h3 class="sec">Proficiencies &amp; languages</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Armor &amp; weapons</div><div class="fx">Light + medium armor, shields · martial + simple weapons.</div></div>
+    <div class="row2 p"><div class="nm">Tools</div><div class="fx">Disguise Kit, Drum.</div></div>
+    <div class="row2 p"><div class="nm">Languages</div><div class="fx">Common, Giant.</div></div>
+  </div>
+  <h3 class="sec">Equipment <span class="slots">· 15 gp</span></h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Worn / carried</div><div class="fx">Glaive, greataxe, javelin, Dread Helm, Javelin of Lightning, costume clothes (gladiator!).</div></div>
+    <div class="row2 p"><div class="nm">Backpack</div><div class="fx">Rope, bedroll, rations ×10, torches ×10, tinderbox, oil ×2, waterskin.</div></div>
+  </div>
+</section>
 
 <footer>Golden Vault crew · numbers from the 5etools dataset (2024 rules) · tell the DM if something looks off</footer>
 </div>

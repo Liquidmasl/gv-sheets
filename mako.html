@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
-<title>Golden Vault — Crew</title>
+<title>Mako — Warlock</title>
 <style>
 :root{
   --bg:#191512; --card:#221c17; --card2:#2a231d; --line:#3a322a;
@@ -138,23 +138,133 @@ footer{color:var(--ink-faint); font-size:.75rem; text-align:center; margin-top:2
 </head>
 <body>
 <header class="site">
-  <a href="index.html">🗝️ Golden Vault</a><span class="pg">crew</span>
+  <a href="index.html">🗝️ Golden Vault</a><span class="pg">Mako</span>
   <span class="basics"><a href="basics.html">rules basics ↗</a></span>
 </header>
-
+<nav class="sub" role="tablist"><button role="tab" data-for="p-play" aria-selected="false">Play</button><button role="tab" data-for="p-stats" aria-selected="false">Stats & Gear</button></nav>
 <div class="wrap">
-<div class="charhead">
-  <h2 class="charname">The Crew</h2>
-  <p class="charsub">Level 5 · pick your character and <b>bookmark your page</b> — in the heat of the moment you only ever see your own sheet.</p>
-</div>
-<div class="crew">
-  <a href="mako.html"><span class="cn">Mako 🔥</span><br><span class="cc">Tiefling Warlock — shadows, fire, and a hat full of faces</span></a>
-  <a href="chumbo.html"><span class="cn">Chumbo 🪓</span><br><span class="cc">Goliath Barbarian — gladiator with wild magic in his veins</span></a>
-  <a href="theron.html"><span class="cn">Theron ⚔️</span><br><span class="cc">Dragonborn Paladin — the Lord Commander, dual-wielding drama</span></a>
-  <a href="melli.html"><span class="cn">Melli's Sorcerer 🌑</span><br><span class="cc">Tiefling Shadow Sorcerer — noble blood, darker gifts (name TBD)</span></a>
-  <a href="niki.html"><span class="cn">Niki's Monk 🐈</span><br><span class="cc">Tabaxi Monk — cat burglar, fists faster than thought (name TBD)</span></a>
-</div>
-<div class="hint" style="margin-top:1.4rem">New to D&amp;D? Read the <a href="basics.html" style="color:var(--gold)">rules basics</a> first — it's two minutes and covers everything you need to sit down and play.</div>
+<section class="panel" id="p-play">
+  <div class="charhead">
+    <h2 class="charname">Mako</h2>
+    <p class="charsub">Tiefling · Warlock 5 · The Genie (Efreeti) · Urchin</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>12</b><span>AC</span></div>
+    <div class="stat"><b>38</b><span>HP</span></div>
+    <div class="stat"><b>30 ft</b><span>Speed</span></div>
+    <div class="stat"><b>+2</b><span>Init</span></div>
+    <div class="stat"><b>15</b><span>Spell DC</span></div>
+    <div class="stat"><b>+7</b><span>Spell Atk</span></div>
+    <div class="stat"><b>2× L3</b><span>Pact slots</span></div>
+    <div class="stat"><b>120 ft</b><span>Devil's Sight</span></div>
+  </div>
+  <div class="card">
+    <div class="budget">
+      <div class="row"><span class="tok m">MOVE</span><span class="desc"><b>30 ft</b> — split it up around your action however you like</span></div>
+      <div class="row"><span class="tok a">ACTION</span><span class="desc">one per turn — cast, Dash, Dodge, Help, Hide…</span></div>
+      <div class="row"><span class="tok b">BONUS</span><span class="desc">one per turn, <b>only</b> if an ability grants one (marked green below)</span></div>
+      <div class="row"><span class="tok f">FREE</span><span class="desc">interact with one object</span></div>
+      <div class="row"><span class="tok r">REACTION</span><span class="desc">one per <b>round</b> — Counterspell &amp; Hellish Rebuke live here</span></div>
+    </div>
+  </div>
+  <div class="hint"><b>Default turn:</b> Eldritch Blast twice (+7, 1d10+4 each, can split targets). Slots come back on a <b>short rest</b> — don't hoard them. Stand in dim light: free Invisibility.</div>
+
+  <h3 class="sec">Signature moves</h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Eldritch Blast <small>cantrip · 120 ft</small></div><div class="fx"><b>2 beams</b>, +7 each, <b>1d10+4 force</b> each, any targets.</div></div>
+    <div class="row2 a"><div class="nm">One with Shadows <small>at will</small></div><div class="fx">In dim light or darkness: cast <b>Invisibility on yourself, no slot</b>. Ends if you attack/cast.</div></div>
+    <div class="row2 p"><div class="nm">Genie's Wrath</div><div class="fx">Once per turn when you hit: <b>+3 fire damage</b>.</div></div>
+    <div class="row2 p"><div class="nm">Devil's Sight</div><div class="fx">You see normally in ANY darkness, 120 ft — including your own Darkness spell.</div></div>
+    <div class="row2 a"><div class="nm">Bottled Respite <small>1 / long rest</small></div><div class="fx">Vanish into your vessel (up to 6 h). Hiding spot, smuggling trick, dramatic exit.</div></div>
+  </div>
+
+  <h3 class="sec">Spells <span class="slots">· 2 pact slots, all level 3, back on short rest</span></h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Fireball <small>3rd · 150 ft</small></div><div class="fx">20-ft sphere, DEX save 15, <b>8d6 fire</b> (half on save). Warn your friends.</div></div>
+    <div class="row2 a"><div class="nm">Hypnotic Pattern <small>3rd · 120 ft · <span class="chip c">C</span></small></div><div class="fx">30-ft cube: WIS 15 or <b>Charmed + Incapacitated</b>. Shuts down groups. Breaks on damage.</div></div>
+    <div class="row2 r"><div class="nm">Counterspell <small>3rd · 60 ft</small></div><div class="fx">Reaction when someone casts: CON save or their spell <b>fails</b>.</div></div>
+    <div class="row2 a"><div class="nm">Scorching Ray <small>2nd (upcast 3rd: 4 rays)</small></div><div class="fx">Rays +7, <b>2d6 fire</b> each.</div></div>
+    <div class="row2 b"><div class="nm">Misty Step <small>2nd</small></div><div class="fx">Teleport 30 ft. Bonus action.</div></div>
+    <div class="row2 b"><div class="nm">Hex <small>1st · <span class="chip c">C</span> 1 h</small></div><div class="fx">+1d6 necrotic on YOUR hits vs the target + it has disadvantage on one ability.</div></div>
+    <div class="row2 a"><div class="nm">Darkness <small>1 / long rest · free · <span class="chip c">C</span></small></div><div class="fx">15-ft sphere of magical darkness. Everyone's blind inside — <b>except you</b>.</div></div>
+    <div class="row2 r"><div class="nm">Hellish Rebuke <small>1 / long rest · free</small></div><div class="fx">Reaction when damaged: DEX 15, <b>3d10 fire</b> to the attacker.</div></div>
+  </div>
+  <details>
+    <summary>Utility &amp; rituals (no slot needed for [R])</summary>
+    <div class="inner rows">
+      <div class="row2 a"><div class="nm">Find Familiar [R]</div><div class="fx">Pact of the Chain familiar — scout with its eyes; it can attack via your Attack action (its reaction).</div></div>
+      <div class="row2 a"><div class="nm">Detect Magic [R] <span class="chip c">C</span></div><div class="fx">Sense magic within 30 ft for 10 min.</div></div>
+      <div class="row2 a"><div class="nm">Speak with Animals [R]</div><div class="fx">10 min of animal small talk.</div></div>
+      <div class="row2 a"><div class="nm">Cantrips</div><div class="fx">Create Bonfire (C, DEX 15, 2d8), Sorcerous Burst (+7, 2d8 acid), Minor Illusion, Thaumaturgy, Guidance (+1d4 checks, C), Mage Hand.</div></div>
+    </div>
+  </details>
+
+  <h3 class="sec">Magic items</h3>
+  <div class="rows">
+    <div class="row2 a"><div class="nm">Hat of Disguise</div><div class="fx">At-will Disguise Self. You are anyone.</div></div>
+    <div class="row2 a"><div class="nm">Immovable Rod</div><div class="fx">Press button: rod fixes in space, holds 8000 lb. Ladder anchor, door bar, trap jammer, gap bridge…</div></div>
+  </div>
+</section>
+
+<section class="panel" id="p-stats">
+  <div class="charhead">
+    <h2 class="charname">Stats &amp; Gear</h2>
+    <p class="charsub">Tiefling · Warlock 5 (The Genie — Efreeti) · Urchin</p>
+  </div>
+  <h3 class="sec">Abilities &amp; saving throws</h3>
+  <div class="abil">
+    <div class="a"><span>STR</span><b>8</b> (−1)<span class="sv">save −1</span></div>
+    <div class="a"><span>DEX</span><b>14</b> (+2)<span class="sv">save +2</span></div>
+    <div class="a"><span>CON</span><b>14</b> (+2)<span class="sv">save +2</span></div>
+    <div class="a"><span>INT</span><b>12</b> (+1)<span class="sv">save +1</span></div>
+    <div class="a pf"><span>WIS</span><b>11</b> (+0)<span class="sv">save +3</span></div>
+    <div class="a pf"><span>CHA</span><b>18</b> (+4)<span class="sv">save +7</span></div>
+  </div>
+  <h3 class="sec">Skills</h3>
+  <div class="skills">
+    <div class="sk"><span>Acrobatics</span><b>+2</b></div>
+    <div class="sk"><span>Animal Handling</span><b>+0</b></div>
+    <div class="sk"><span>Arcana</span><b>+1</b></div>
+    <div class="sk"><span>Athletics</span><b>−1</b></div>
+    <div class="sk pf"><span>Deception</span><b>+7</b></div>
+    <div class="sk"><span>History</span><b>+1</b></div>
+    <div class="sk"><span>Insight</span><b>+0</b></div>
+    <div class="sk pf"><span>Intimidation</span><b>+7</b></div>
+    <div class="sk"><span>Investigation</span><b>+1</b></div>
+    <div class="sk"><span>Medicine</span><b>+0</b></div>
+    <div class="sk"><span>Nature</span><b>+1</b></div>
+    <div class="sk"><span>Perception</span><b>+0</b></div>
+    <div class="sk"><span>Performance</span><b>+4</b></div>
+    <div class="sk"><span>Persuasion</span><b>+4</b></div>
+    <div class="sk"><span>Religion</span><b>+1</b></div>
+    <div class="sk pf"><span>Sleight of Hand</span><b>+5</b></div>
+    <div class="sk pf"><span>Stealth</span><b>+5</b></div>
+    <div class="sk"><span>Survival</span><b>+0</b></div>
+  </div>
+  <p class="legend">bright = proficient</p>
+  <h3 class="sec">Senses &amp; defenses</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Passives</div><div class="fx">Perception 10 · Insight 10 · Investigation 11 · Darkvision 60 ft (<b>Devil's Sight 120 ft</b> — sees through magical darkness)</div></div>
+    <div class="row2 p"><div class="nm">Resistance</div><div class="fx">Fire (half damage, always).</div></div>
+    <div class="row2 p"><div class="nm">Hit dice</div><div class="fx">5d8 — spend on short rests to heal.</div></div>
+  </div>
+  <h3 class="sec">Proficiencies &amp; languages</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Armor &amp; weapons</div><div class="fx">Light armor · simple weapons.</div></div>
+    <div class="row2 p"><div class="nm">Tools</div><div class="fx">Disguise Kit, <b>Thieves' Tools</b>.</div></div>
+    <div class="row2 p"><div class="nm">Languages</div><div class="fx">Common, Infernal.</div></div>
+  </div>
+  <h3 class="sec">Personality</h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Traits</div><div class="fx">Squeezes into small places no one else can reach; sleeps with his back to a wall, everything he owns wrapped up.</div></div>
+    <div class="row2 p"><div class="nm">Ideal / Bond / Flaw</div><div class="fx">Respect — all people, rich or poor, deserve it · No one else should endure what I've been through · If outnumbered, I run.</div></div>
+  </div>
+  <h3 class="sec">Equipment <span class="slots">· 25 gp</span></h3>
+  <div class="rows">
+    <div class="row2 p"><div class="nm">Worn / carried</div><div class="fx">Leather armor, 2 daggers, sickle, small knife, orb (focus), Hat of Disguise, Immovable Rod.</div></div>
+    <div class="row2 p"><div class="nm">Backpack</div><div class="fx">2 books, lamp, oil ×10, parchment ×10, ink + pen, map case, tinderbox, common clothes.</div></div>
+  </div>
+</section>
 
 <footer>Golden Vault crew · numbers from the 5etools dataset (2024 rules) · tell the DM if something looks off</footer>
 </div>
